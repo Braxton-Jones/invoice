@@ -1,0 +1,23 @@
+
+// Colors
+$dark-purple: hsl(240, 57%, 62%);
+$light-purple: hsl(243, 60%, 74%);
+$dark-navy-blue: hsl(232, 23%, 16%);
+$navy-blue: hsl(230, 22%, 19%);
+$light-grey: hsl(235, 39%, 90%);
+$dark-grey: hsl(100, 5%, 53%);
+$blue-grey: hsl(232, 28%, 62%);
+$almost-black: hsl(220, 18%, 8%);
+$red-orange: hsl(4, 77%, 63%);
+$coral-pink: hsl(0, 100%, 80%);
+$almost-white: hsl(0, 0%, 97%);
+
+// Typography
+$font-family: 'League Spartan', sans-serif;
+
+
+// Light & Dark classes
+.light{
+    background-color: $almost-black;
+}
+
