@@ -10,14 +10,14 @@ $blue-grey: hsl(232, 28%, 62%);
 $almost-black: hsl(220, 18%, 8%);
 $red-orange: hsl(4, 77%, 63%);
 $coral-pink: hsl(0, 100%, 80%);
-$almost-white: hsl(0, 0%, 97%);
+$almost-white: hsl(240, 27%, 97%);
 
 // Typography
-$font-family: 'League Spartan', sans-serif;
+
 
 
 // Light & Dark classes
 .light{
-    background-color: $almost-black;
+    background-color: $almost-white;
 }
 

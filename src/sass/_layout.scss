@@ -1,0 +1,103 @@
+main{
+    height: 100vh;
+}
+
+header{
+    background-color: $dark-navy-blue ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 72px;
+    margin-bottom: 30px;
+
+    .logo{
+        height: 72px;  
+    }
+    .icon-wrapper{
+        display: flex;
+        align-items: center;
+
+        .toggle, .profile{
+            margin: 25px;  
+        }
+        span{
+            height: 72px;
+            width: 1.5px;
+            background-color: #494e6e;
+            
+        }
+        .profile{
+            max-width: 32px;
+            border-radius: 100%;
+           
+        }
+    }
+   
+}
+
+.home-page{
+    margin: 0 20px;
+    .subheading{
+        display: flex;
+        justify-content: space-between;
+
+       
+        .subheading-title{
+            display:flex;
+            flex-direction: column;
+        
+        h3{
+            font-weight: 700; 
+            font-size: 24px;
+            letter-spacing: -0.75px;
+            line-height: normal;
+        }
+        
+        p{
+            color: $blue-grey ;
+            line-height: 15px;
+        }
+        
+        }
+        .subheading-interact{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+                .filter-btn,
+                .add-btn{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    gap: 10px;
+                }
+
+                .filter-btn{
+                    line-height: 15px;
+                    letter-spacing: -0.25px;
+                    font-weight: 700;
+
+                }
+
+                .add-btn{
+                    border: none;
+                    background-color: $dark-purple;
+                    color: white;
+                    height: 45px;
+                    width: 90px;
+                    border-radius: 24px;
+                    gap: 7px;
+                    font-weight: 700;
+                    line-height: 15px;
+                    letter-spacing: -0.25;
+                    font-size: 15px;
+                    padding-right: 10px;
+
+
+                    img{
+                        max-width: 32px;
+                    }
+                }
+        }
+    }
+}

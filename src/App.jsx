@@ -1,15 +1,13 @@
-import logo from "./assets/logo.svg"
-import sun from "./assets/icon-sun.svg"
-import moon from "./assets/icon-moon.svg"
-import profile from "./assets/image-avatar.jpg"
+import Header from "./layout/componets/Header.jsx"
+import Home from "./layout/views/Home.jsx"
+import './sass/styles.scss'
 function App() {
 
   return (
     <>
     <main className="light">
-
-     
-
+      <Header/>
+      <Home/>
     </main>
     </>
   )
