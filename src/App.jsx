@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-    <main className="light">
+    <main className="light" data-testid="app-component">
       <Header/>
       <Home/>
     </main>
