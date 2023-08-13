@@ -1,3 +1,4 @@
+
 describe("home page tests", () => {
     it("invoice component data matches data from database", ()=> {
 
@@ -17,6 +18,10 @@ describe("home page tests", () => {
 
     it("theme toggle works as intended", ()=> {
         
+    });
+
+    it("status matches correct status", ()=>{
+
     });
 })
 

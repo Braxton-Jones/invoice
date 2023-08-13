@@ -1,0 +1,34 @@
+@import '../variables';
+
+header{
+    background-color: $dark-navy-blue ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 72px;
+    margin-bottom: 30px;
+
+    .logo{
+        height: 72px;  
+    }
+    .icon-wrapper{
+        display: flex;
+        align-items: center;
+
+        .toggle, .profile{
+            margin: 25px;  
+        }
+        span{
+            height: 72px;
+            width: 1.5px;
+            background-color: #494e6e;
+            
+        }
+        .profile{
+            max-width: 32px;
+            border-radius: 100%;
+           
+        }
+    }
+   
+}

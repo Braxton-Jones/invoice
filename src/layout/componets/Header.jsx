@@ -2,7 +2,7 @@ import logo from "../../assets/logo.png"
 import sun from "../../assets/icon-sun.svg"
 import moon from "../../assets/icon-moon.svg"
 import profile from "../../assets/image-avatar.jpg"
-import "../../sass/styles.scss"
+import "../../sass/componets/_header.scss"
 function Header(){
     return(
         <header>
