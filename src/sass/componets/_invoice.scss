@@ -1,7 +1,7 @@
 @import '../variables';
 
 .invoice{
-    background-color: hsla(0, 0%, 100%, 0.678);
+    background-color: #ffffff;
     max-width: 327px;
     height: 135px;
     border-radius: 8px;
@@ -70,18 +70,70 @@
             
             
         }
-
+// Light Themes
         .draft{
+            background-color: hsla(0, 0%, 0%, 0.11);
+            color: $navy-blue ;
 
-        }
-        
+            svg{
+                circle{
+                    fill: $navy-blue;
+                    }
+                }
+            }
         .paid{
-            background-color: hsla(298, 72%, 35%, 0.34);
-        }
+            background-color: hsla(240, 25%, 97%, 0.247);
+            color: hsla(0, 0%, 64%, 0.274) ;
 
+            svg{
+                circle{
+                    fill: hsla(0, 0%, 64%, 0.274);
+                    }
+                }
+            }
         .pending{
+            background-color: hsla(34, 100%, 50%, 0.096);
+            color: hsl(34, 100%, 50%) ;
 
-        }
+            svg{
+                circle{
+                    fill: hsl(34, 100%, 50%) ;
+                    }
+                }
+            }
+
+// Dark Themes
+// .draft{
+//     background-color: hsla(0, 0%, 0%, 0.11);
+//     color: $navy-blue ;
+
+//     svg{
+//         circle{
+//             fill: $navy-blue;
+//             }
+//         }
+//     }
+// .paid{
+//     background-color: hsla(240, 25%, 97%, 0.247);
+//     color: hsla(0, 0%, 64%, 0.274) ;
+
+//     svg{
+//         circle{
+//             fill: hsla(0, 0%, 64%, 0.274);
+//             }
+//         }
+//     }
+// .pending{
+//     background-color: hsla(34, 100%, 50%, 0.096);
+//     color: hsl(34, 100%, 50%) ;
+
+//     svg{
+//         circle{
+//             fill: hsl(34, 100%, 50%) ;
+//             }
+//         }
+//     }
+
     }
     
 }
