@@ -47,6 +47,10 @@ main{
                     letter-spacing: -0.25px;
                     font-weight: 700;
 
+                    img.open{
+                          transform: rotateX(180deg);  
+                        }
+
                 }
 
                 .add-btn{
@@ -62,6 +66,11 @@ main{
                     letter-spacing: -0.25;
                     font-size: 15px;
                     padding-right: 10px;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: aqua;
+                    }
 
 
                     img{
@@ -77,5 +86,37 @@ main{
         display: flex;
         flex-direction: column;
         gap: 20px;
+    }
+
+    .default-message{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+
+            img{
+                padding: 60px;
+            }
+
+            h3{
+               font-size: 24px;
+               font-weight: 700;
+               letter-spacing: -0.75px;
+               color: $almost-black;
+               margin-bottom: 15px;
+            }
+
+            p{
+              font-size: 13px;
+              letter-spacing: -0.1px;
+              color: $blue-grey;
+              max-width: 175px;
+              line-height: 15px;
+
+
+                span{
+                    font-weight: 700;
+                }
+            }
     }
 }

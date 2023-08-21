@@ -4,7 +4,6 @@ const Invoice = require("../models/invoiceModel")
 exports.getAllInvoices = async (req,res) => {
     try{
         const invoices = await Invoice.find()
-        console.log(invoices)
         res.status(200).json(invoices);
     }catch (error){
         res.status(500).json({message: "Server Error"})
