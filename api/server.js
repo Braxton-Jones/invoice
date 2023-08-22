@@ -1,7 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,13 +17,13 @@ mongoose.connect(mongoURI, {
 });
 
 // Import routes
-const invoiceRoutes = require('./routes/invoiceRoutes');
+const invoiceRoutes = require("./routes/invoiceRoutes");
 
 // Use routes
-app.use('/invoices', invoiceRoutes);
+app.use("/invoices", invoiceRoutes);
 
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  console.log('You got this!!!')
+  console.log("You got this!!!");
 });
