@@ -4,6 +4,8 @@ const invoiceController = require("../controllers/invoiceController");
 
 // Get all invoices
 router.get("/", invoiceController.getAllInvoices);
+// Get one invoice
+router.get("/:id", invoiceController.getOneInvoice);
 // Create new invoice
 router.post("/", invoiceController.createNewInvoice);
 // Delete current invoice

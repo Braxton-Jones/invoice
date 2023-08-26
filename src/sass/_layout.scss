@@ -1,125 +1,139 @@
+@use 'sass:math';
 @import './variables';
-main{
-    height: 100vh;
+@function pxToRem($pxValue) {
+  @return math.div($pxValue, 16px) * 1rem;
 }
 
+main {
+  height: fit-content;
+}
 
+.filter-select {
+  position: absolute;
+  top: pxToRem(150px);
+  left: pxToRem(200px);
+  background-color: white;
+  border-radius: pxToRem(10px);
+  box-shadow:
+    0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.2),
+    0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  font-size: pxToRem(15px);
 
-.home-page{
-    margin: 0 20px;
-    .subheading{
-        display: flex;
-        justify-content: space-between;
+  letter-spacing: pxToRem(-0.25px);
 
-       
-        .subheading-title{
-            display:flex;
-            flex-direction: column;
-        
-        h3{
-            font-weight: 700; 
-            font-size: 24px;
-            letter-spacing: -0.75px;
-            line-height: normal;
-        }
-        
-        p{
-            color: $blue-grey ;
-            line-height: 15px;
-        }
-        
-        }
-        .subheading-interact{
-            display: flex;
-            gap: 10px;
-            align-items: center;
+  padding: pxToRem(10px);
+}
 
-                .filter-btn,
-                .add-btn{
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-evenly;
-                    gap: 10px;
-                }
+.home-page {
+  margin: 0 pxToRem(20px);
+  height: 100vh;
 
-                .filter-btn{
-                    line-height: 15px;
-                    letter-spacing: -0.25px;
-                    font-weight: 700;
+  .subheading {
+    display: flex;
+    justify-content: space-between;
 
-                    img.open{
-                          transform: rotateX(180deg);  
-                        }
+    .subheading-title {
+      display: flex;
+      flex-direction: column;
 
-                }
+      h3 {
+        font-weight: 700;
+        font-size: pxToRem(24px);
+        letter-spacing: pxToRem(-0.75px);
+        line-height: normal;
+      }
 
-                .add-btn{
-                    border: none;
-                    background-color: $dark-purple;
-                    color: white;
-                    height: 45px;
-                    width: 90px;
-                    border-radius: 24px;
-                    gap: 7px;
-                    font-weight: 700;
-                    line-height: 15px;
-                    letter-spacing: -0.25;
-                    font-size: 15px;
-                    padding-right: 10px;
-                    cursor: pointer;
-
-                    &:hover{
-                        background-color: aqua;
-                    }
-
-
-                    img{
-                        max-width: 32px;
-                    }
-                }
-        }
-        .filter-select{
-            background-color: black;
-        }
-
-
-    }
-    
-    .invoice-list{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+      p {
+        color: $blue-grey;
+        line-height: pxToRem(15px);
+      }
     }
 
-    .default-message{
+    .subheading-interact {
+      display: flex;
+      gap: pxToRem(10px);
+      align-items: center;
+
+      .filter-btn,
+      .add-btn {
         display: flex;
-        flex-direction: column;
-        text-align: center;
         align-items: center;
+        justify-content: space-evenly;
+        gap: pxToRem(10px);
+      }
 
-            img{
-                padding: 60px;
-            }
+      .filter-btn {
+        line-height: pxToRem(15px);
+        letter-spacing: pxToRem(-0.25px);
+        font-weight: 700;
 
-            h3{
-               font-size: 24px;
-               font-weight: 700;
-               letter-spacing: -0.75px;
-               color: $almost-black;
-               margin-bottom: 15px;
-            }
+        img.open {
+          transform: rotateX(180deg);
+        }
+      }
 
-            p{
-              font-size: 13px;
-              letter-spacing: -0.1px;
-              color: $blue-grey;
-              max-width: 175px;
-              line-height: 15px;
+      .add-btn {
+        border: none;
+        background-color: $dark-purple;
+        color: white;
+        height: pxToRem(45px);
+        width: pxToRem(90px);
+        border-radius: pxToRem(24px);
+        gap: pxToRem(7px);
+        font-weight: 700;
+        line-height: pxToRem(15px);
+        letter-spacing: pxToRem(-0.25px);
+        font-size: pxToRem(15px);
+        padding-right: pxToRem(10px);
+        cursor: pointer;
 
+        &:hover {
+          background-color: aqua;
+        }
 
-                span{
-                    font-weight: 700;
-                }
-            }
+        img {
+          max-width: pxToRem(32px);
+        }
+      }
     }
+  }
+
+  .invoice-list {
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(20px);
+    margin-top: pxToRem(30px);
+  }
+
+  .default-message {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    img {
+      padding: pxToRem(60px);
+    }
+
+    h3 {
+      font-size: pxToRem(24px);
+      font-weight: 700;
+      letter-spacing: pxToRem(-0.75px);
+      color: $almost-black;
+      margin-bottom: pxToRem(15px);
+    }
+
+    p {
+      font-size: pxToRem(13px);
+      letter-spacing: pxToRem(-0.1px);
+      color: $blue-grey;
+      max-width: pxToRem(175px);
+      line-height: pxToRem(15px);
+
+      span {
+        font-weight: 700;
+      }
+    }
+  }
 }

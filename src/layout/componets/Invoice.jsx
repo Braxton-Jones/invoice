@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Invoice(props) {
   const getStatusTextAndStyle = () => {
     switch (props.invoice.status) {
@@ -13,28 +15,29 @@ function Invoice(props) {
   };
 
   const { text, invoiceClass } = getStatusTextAndStyle();
-
   return (
-    <div className='invoice'>
-      <div className='customer-info'>
-        <p className='invoice-id'>
-          #<span className='id'>{props.invoice._id}</span>
-        </p>
-        <p className='invoice-client'>{props.invoice.clientName}</p>
-      </div>
-      <div className='invoice-details'>
-        <div className='payment'>
-          <p className='invoice-due'>Due {props.invoice.paymentDue}</p>
-          <p className='invoice-total'>$ {props.invoice.total}</p>
+    <Link to={`/view/${props.invoice._id}`}>
+      <div className='invoice'>
+        <div className='customer-info'>
+          <p className='invoice-id'>
+            #<span className='id'>{props.invoice.id}</span>
+          </p>
+          <p className='invoice-client'>{props.invoice.clientName}</p>
         </div>
-        <div className={`status ${invoiceClass}`}>
-          <svg width='8' height='8' viewBox='0 0 9 9' fill='none'>
-            <circle cx='4' cy='4' r='4' fill='#FF8F00' />
-          </svg>
-          <p className={`status-text`}>{text}</p>
+        <div className='invoice-details'>
+          <div className='payment'>
+            <p className='invoice-due'>Due {props.invoice.paymentDue}</p>
+            <p className='invoice-total'>$ {props.invoice.total}</p>
+          </div>
+          <div className={`status ${invoiceClass}`}>
+            <svg width='8' height='8' viewBox='0 0 9 9' fill='none'>
+              <circle cx='4' cy='4' r='4' fill='#FF8F00' />
+            </svg>
+            <p className={`status-text`}>{text}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

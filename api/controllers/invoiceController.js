@@ -9,6 +9,15 @@ exports.getAllInvoices = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+// Get one invoice
+exports.getOneInvoice = async (req, res) => {
+  try {
+    const invoice = await Invoice.findById(req.params.id);
+    res.status(200).json(invoice);
+  } catch (error) {
+    res.status(500).json({ message: "Couldn't find invoice" });
+  }
+};
 // Create new invoice
 exports.createNewInvoice = async (req, res) => {
   try {

@@ -8,7 +8,7 @@ const ModalPortal = ({ children, onClose }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!portalRoot.contains(event.target)) {
-        onClose(); 
+        onClose();
       }
     };
 
