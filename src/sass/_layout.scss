@@ -9,9 +9,12 @@ main {
 }
 
 .filter-select {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: pxToRem(150px);
-  left: pxToRem(200px);
+  transform: translateX(-20%);
+  gap: pxToRem(5px);
   background-color: white;
   border-radius: pxToRem(10px);
   box-shadow:
@@ -19,15 +22,17 @@ main {
     0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.3);
   font-weight: 700;
   font-size: pxToRem(15px);
-
+  border: none;
   letter-spacing: pxToRem(-0.25px);
-
-  padding: pxToRem(10px);
+  padding: pxToRem(20px);
 }
 
 .home-page {
   margin: 0 pxToRem(20px);
   height: 100vh;
+  max-width: pxToRem(700px);
+  margin: 0 auto;
+  padding-inline: pxToRem(25px);
 
   .subheading {
     display: flex;
@@ -67,6 +72,7 @@ main {
         line-height: pxToRem(15px);
         letter-spacing: pxToRem(-0.25px);
         font-weight: 700;
+        cursor: pointer;
 
         img.open {
           transform: rotateX(180deg);
@@ -85,7 +91,6 @@ main {
         line-height: pxToRem(15px);
         letter-spacing: pxToRem(-0.25px);
         font-size: pxToRem(15px);
-        padding-right: pxToRem(10px);
         cursor: pointer;
 
         &:hover {

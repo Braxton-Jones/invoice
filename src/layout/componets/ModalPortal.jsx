@@ -1,13 +1,16 @@
 // ModalPortal.js
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const ModalPortal = ({ children, onClose }) => {
-  const portalRoot = document.getElementById('portal-root');
+  const root = document.getElementById('root');
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!portalRoot.contains(event.target)) {
+      if (
+        !root.contains(event.target) &&
+        event.target.className !== 'filter-btn'
+      ) {
         onClose();
       }
     };
@@ -17,7 +20,7 @@ const ModalPortal = ({ children, onClose }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [portalRoot, onClose]);
+  }, [onClose]);
 
   return ReactDOM.createPortal(children, portalRoot);
 };

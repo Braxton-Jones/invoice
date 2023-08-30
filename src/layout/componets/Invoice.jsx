@@ -16,8 +16,8 @@ function Invoice(props) {
 
   const { text, invoiceClass } = getStatusTextAndStyle();
   return (
-    <Link to={`/view/${props.invoice._id}`}>
-      <div className='invoice'>
+    <div className='invoice'>
+      <Link to={`/view/${props.invoice._id}`}>
         <div className='customer-info'>
           <p className='invoice-id'>
             #<span className='id'>{props.invoice.id}</span>
@@ -36,8 +36,8 @@ function Invoice(props) {
             <p className={`status-text`}>{text}</p>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
