@@ -1,1 +1,82 @@
 @import '../variables';
+
+.invoice-form {
+  display: flex;
+  flex-direction: column;
+  gap: pxToRem(20px);
+  padding-bottom: pxToRem(80px);
+  -webkit-box-shadow: inset -26px -143px 50px -98px rgba(0,0,0,0.11);
+  -moz-box-shadow: inset -26px -143px 50px -98px rgba(0,0,0,0.11);
+  box-shadow: inset -26px -143px 50px -98px rgba(0,0,0,0.11);
+  padding: pxToRem(0px) pxToRem(20px) pxToRem(100px) pxToRem(20px);
+  legend {
+    color: $dark-purple;
+    font-weight: 700;
+    font-size: pxToRem(15px);
+    padding-bottom: pxToRem(10px);
+  }
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+  label {
+    color: $blue-grey;
+    font-size: pxToRem(13px);
+    line-height: pxTorem(15px);
+    letter-spacing: -0.1px;
+  }
+
+  input,
+  select,
+  textarea {
+    display: block;
+  }
+
+  input,select {
+    width: 100%;
+    border: 1px solid hsla(231, 75, 93, 0.75);
+    border-radius: 4px;
+    background-color: transparent;
+   
+  }
+  input{
+    min-height: pxToRem(48px);
+    padding-inline: pxToRem(15px);
+  }
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  select{
+    max-height: pxToRem(48px);
+    padding: pxToRem(15px);
+    appearance: none;
+  }
+
+
+  .sender-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: pxToRem(20px);
+    .input-label-pair:nth-child(4),
+    .input-label-pair:nth-child(1) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .bill-to-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: pxToRem(20px);
+    .input-label-pair:not(:nth-child(4)):not(:nth-child(5)) {
+        grid-column: 1 / -1;
+    }
+}
+
+.add-btn{
+    width: 100%;
+    color: hsl(231, 36%, 63%);
+    background-color: hsl(228, 71%, 99%);
+}

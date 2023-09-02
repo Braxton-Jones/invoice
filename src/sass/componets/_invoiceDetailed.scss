@@ -1,0 +1,74 @@
+@import '../variables';
+
+.edit-modal {
+  position: absolute;
+  top: pxToRem(70px);
+  background-color: white;
+  width: 100%;
+
+  h3 {
+    font-weight: 700;
+    font-size: pxToRem(24px);
+    line-height: pxToRem(32px);
+    letter-spacing: pxToRem(-0.5px);
+    padding-bottom: pxToRem(20px);
+    padding: pxToRem(30px) pxToRem(20px);
+
+    span {
+      color: $blue-grey;
+    }
+  }
+
+  .edit-modal-footer{
+    position: sticky;
+    padding: pxToRem(20px);
+    text-align: right;
+
+    button{
+        margin-left: pxToRem(5px);
+    }
+
+  }
+}
+
+.delete-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .delete-modal {
+    background-color: white;
+    padding: pxToRem(35px);
+    margin-inline: pxToRem(25px);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(15px);
+
+    h3 {
+      font-weight: 700;
+      font-size: pxToRem(24px);
+      line-height: pxToRem(32px);
+      letter-spacing: pxToRem(-0.5px);
+    }
+
+    p {
+      font-weight: 500;
+      font-size: pxToRem(13px);
+      line-height: pxToRem(22px);
+      color: $blue-grey;
+    }
+
+    .delete-wrapper {
+      text-align: right;
+    }
+  }
+}

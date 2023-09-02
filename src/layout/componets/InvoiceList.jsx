@@ -1,6 +1,7 @@
 import illustration from '../../assets/illustration-empty.svg';
 import Invoice from '../componets/Invoice';
 export default function InvoiceList(props) {
+  console.log('this', props.invoice);
   return (
     <section className='invoice-list'>
       {/* Invoices Container */}

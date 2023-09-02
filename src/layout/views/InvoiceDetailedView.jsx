@@ -1,40 +1,40 @@
 import arrow from '../../assets/icon-arrow-left.svg';
 import ModalPortal from '../componets/ModalPortal';
+import InvoiceForm from '../componets/InvoiceForm';
 import { deleteInvoice } from '../../api';
-import { Link, useLoaderData } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { getOneInvoice } from '../../api';
+import '../../sass/componets/_invoiceDetailed.scss';
 // Break down??
 
 export function loader({ params }) {
   return getOneInvoice(params.id);
 }
 function InvoiceDetailedView() {
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const invoiceData = useLoaderData();
 
-  // Footer Functions
-  function handleGoBack() {
-    // Changes router back to "/"
-  }
-  // Delete
-  const toggleModal = () => {
-    setShowModal(!showModal);
+  const toggleDeleteModal = () => {
+    setShowDeleteModal(!showDeleteModal);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
   };
 
   async function handleDelete(id) {
     await deleteInvoice(id);
   }
 
-  function handleEdit() {}
+  const toggleEditModal = () => {
+    setShowEditModal(!showEditModal);
+    // Initialize edited data with current data
+  };
 
   function handleMarkAsPaid() {
-    // sends post request to change to paid
+    // Your mark as paid logic here
   }
 
   return (
@@ -156,27 +156,43 @@ function InvoiceDetailedView() {
         )}
       </section>
 
-      {showModal && (
-        <ModalPortal onClose={handleCloseModal}>
-          <div className='delete-modal'>
-            <h3>Confirm Deletion</h3>
-            <p>
-              {' '}
-              Are you sure you want to delete invoice ${invoiceData.id}? This
-              action cannot be undone.
-            </p>
-            <div>
-              <button className='variant-1' onClick={handleCloseModal}>
-                Cancel
-              </button>
-              <Link to='/'>
+      {showEditModal && (
+        <ModalPortal onClose={() => setShowEditModal(false)}>
+          <div className='edit-modal'>
+            <h3>
+              Edit <span>#</span>
+              {invoiceData.id}
+            </h3>
+            <InvoiceForm invoiceInfo={invoiceData} />
+            <div className='edit-modal-footer' >
+              <button className='variant-1'onClick={toggleEditModal}>Cancel</button>
+              <button className='variant-3'>Save Changes</button>
+            </div>
+          </div>
+        </ModalPortal>
+      )}
+
+      {showDeleteModal && (
+        <ModalPortal onClose={handleCloseDeleteModal}>
+          <div className='delete-overlay'>
+            <div className='delete-modal'>
+              <h3>Confirm Deletion</h3>
+              <p>
+                {' '}
+                Are you sure you want to delete invoice ${invoiceData.id}? This
+                action cannot be undone.
+              </p>
+              <div className='delete-wrapper'>
+                <button className='variant-1' onClick={handleCloseDeleteModal}>
+                  Cancel
+                </button>
                 <button
                   className='variant-2'
                   onClick={() => handleDelete(invoiceData._id)}
                 >
                   Delete
                 </button>
-              </Link>
+              </div>
             </div>
           </div>
         </ModalPortal>
@@ -184,14 +200,15 @@ function InvoiceDetailedView() {
 
       <footer>
         <div>
-          <button className='variant-1' onClick={() => handleEdit()}>
+          <button className='variant-1' onClick={toggleEditModal}>
             Edit
           </button>
-
-          <button className='variant-2' onClick={toggleModal}>
+          <button className='variant-2' onClick={toggleDeleteModal}>
             Delete
           </button>
-          <button className='variant-3'>Mark as Paid</button>
+          <button className='variant-3' onClick={handleMarkAsPaid}>
+            Mark as Paid
+          </button>
         </div>
       </footer>
     </>

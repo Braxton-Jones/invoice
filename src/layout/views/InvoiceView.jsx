@@ -16,7 +16,6 @@ export default function InvoiceView() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [showModal, setShowModal] = useState(false);
   const invoices = useLoaderData();
-  console.log(invoices.data);
 
   // Filter Functionality
   const toggleModal = () => {
@@ -27,17 +26,6 @@ export default function InvoiceView() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  function handleFilterChange(key, value) {
-    setSearchParams((prevParams) => {
-      if (value === null) {
-        prevParams.delete(key);
-      } else {
-        prevParams.set(key, value);
-      }
-      return prevParams;
-    });
-  }
 
   return (
     <section className='home-page'>
