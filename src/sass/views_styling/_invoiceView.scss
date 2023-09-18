@@ -1,9 +1,4 @@
-@use 'sass:math';
-@import './variables';
-@function pxToRem($pxValue) {
-  @return math.div($pxValue, 16px) * 1rem;
-}
-
+@import '../util';
 main {
   height: fit-content;
 }
@@ -57,7 +52,7 @@ main {
 
     .subheading-interact {
       display: flex;
-      gap: pxToRem(10px);
+      gap: pxToRem(20px);
       align-items: center;
 
       .filter-btn,
@@ -83,10 +78,10 @@ main {
         border: none;
         background-color: $dark-purple;
         color: white;
-        height: pxToRem(45px);
-        width: pxToRem(90px);
+        padding: pxToRem(6px) pxToRem(6px);
+
         border-radius: pxToRem(24px);
-        gap: pxToRem(7px);
+        gap: pxToRem(5px);
         font-weight: 700;
         line-height: pxToRem(15px);
         letter-spacing: pxToRem(-0.25px);
@@ -94,7 +89,7 @@ main {
         cursor: pointer;
 
         &:hover {
-          background-color: aqua;
+          background-color: hsl(252, 100%, 73%);
         }
 
         img {
@@ -140,5 +135,21 @@ main {
         font-weight: 700;
       }
     }
+  }
+}
+
+.add-modal {
+  position: absolute;
+  top: pxToRem(70px);
+  background-color: white;
+  width: 100%;
+
+  h3 {
+    font-weight: 700;
+    font-size: pxToRem(24px);
+    line-height: pxToRem(32px);
+    letter-spacing: pxToRem(-0.5px);
+    padding-bottom: pxToRem(20px);
+    padding: pxToRem(30px) pxToRem(20px);
   }
 }

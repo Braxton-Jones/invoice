@@ -11,7 +11,7 @@ import InvoiceView, {
 } from './layout/views/InvoiceView.jsx';
 import InvoiceDetailedView, {
   loader as viewDetailedLoader,
-} from './layout/views/InvoiceDetailedView.jsx';
+} from './layout/views/InvoiceDetailed.jsx';
 import './sass/styles.scss';
 import ErrorPage from './layout/views/ErrorPage.jsx';
 

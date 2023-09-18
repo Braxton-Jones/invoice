@@ -1,20 +1,25 @@
 import arrow from '../../assets/icon-arrow-left.svg';
-import ModalPortal from '../componets/ModalPortal';
-import InvoiceForm from '../componets/InvoiceForm';
-import { deleteInvoice } from '../../api';
-import { Link, useLoaderData, useParams } from 'react-router-dom';
+import ModalPortal from '../componets/Utility';
+import {
+  Link,
+  useLoaderData,
+  Form,
+  useNavigate,
+} from 'react-router-dom';
 import { useState } from 'react';
-import { getOneInvoice } from '../../api';
-import '../../sass/componets/_invoiceDetailed.scss';
-// Break down??
+import { getOneInvoice, deleteInvoice, editInvoice } from '../../api';
+import '../../sass/views_styling/_invoiceDetailed.scss';
+import InvoiceForm from '../componets/InvoiceForm';
 
 export function loader({ params }) {
   return getOneInvoice(params.id);
 }
+
 function InvoiceDetailedView() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const invoiceData = useLoaderData();
+  const navigate = useNavigate();
 
   const toggleDeleteModal = () => {
     setShowDeleteModal(!showDeleteModal);
@@ -26,15 +31,21 @@ function InvoiceDetailedView() {
 
   async function handleDelete(id) {
     await deleteInvoice(id);
+    toggleDeleteModal();
+    navigate('/');
   }
 
   const toggleEditModal = () => {
     setShowEditModal(!showEditModal);
-    // Initialize edited data with current data
   };
 
-  function handleMarkAsPaid() {
-    // Your mark as paid logic here
+  const updateStatus = {
+    status: 'paid',
+  };
+
+  async function handleMarkAsPaid(id, update) {
+    await editInvoice(id, update);
+    navigate(`/view/${invoiceData._id}`)
   }
 
   return (
@@ -140,16 +151,14 @@ function InvoiceDetailedView() {
                       </p>
                     </div>
                     <div className='item-cost'>
-                      <p>$ {parseFloat(item.total).toFixed(2)}</p>
+                      <p>$ {parseFloat(item.price).toFixed(2) * item.quantity}</p>
                     </div>
                   </div>
                 );
               })}
               <div className='total'>
                 <p>Grand Total</p>
-                <p className='invoice-total'>
-                  $ {parseFloat(invoiceData.total).toFixed(2)}
-                </p>
+                <p className='invoice-total'>${invoiceData.items.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0).toFixed(2)}</p>
               </div>
             </section>
           </section>
@@ -163,11 +172,7 @@ function InvoiceDetailedView() {
               Edit <span>#</span>
               {invoiceData.id}
             </h3>
-            <InvoiceForm invoiceInfo={invoiceData} />
-            <div className='edit-modal-footer' >
-              <button className='variant-1'onClick={toggleEditModal}>Cancel</button>
-              <button className='variant-3'>Save Changes</button>
-            </div>
+            <InvoiceForm currentInvoice={invoiceData} toggleEditForm={toggleEditModal}/>
           </div>
         </ModalPortal>
       )}
@@ -199,14 +204,17 @@ function InvoiceDetailedView() {
       )}
 
       <footer>
-        <div>
+        <div className='button-wrapper'>
           <button className='variant-1' onClick={toggleEditModal}>
             Edit
           </button>
           <button className='variant-2' onClick={toggleDeleteModal}>
             Delete
           </button>
-          <button className='variant-3' onClick={handleMarkAsPaid}>
+          <button
+            className='variant-3'
+            onClick={() => handleMarkAsPaid(invoiceData._id, updateStatus)}
+          >
             Mark as Paid
           </button>
         </div>

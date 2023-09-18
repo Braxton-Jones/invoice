@@ -1,0 +1,196 @@
+@import '../util';
+// Styling for the invoice details
+.view-container {
+  margin-inline: pxToRem(25px);
+
+  .back-btn {
+    display: flex;
+    align-items: baseline;
+    justify-items: center;
+    gap: pxToRem(10px);
+    font-weight: 700;
+    margin-bottom: pxToRem(25px);
+  }
+
+  .view-status {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: $blue-grey;
+    text-transform: capitalize;
+    justify-content: space-between;
+    padding: pxToRem(25px) pxToRem(25px);
+    border-radius: pxToRem(8px);
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  }
+
+  .invoice-view {
+    margin: pxToRem(20px) pxToRem(0px) pxToRem(50px) pxToRem(0px);
+    border-radius: pxToRem(8px);
+    background-color: white;
+    padding: pxToRem(25px);
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(20px);
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+
+    .invoice-description,
+    .address-line,
+    .title {
+      color: $blue-grey;
+      font-weight: 500;
+      line-height: 20px;
+      font-size: pxToRem(14px);
+    }
+
+    .invoice-description,
+    .title {
+      margin-bottom: pxToRem(5px);
+    }
+
+    .data {
+      font-weight: 700;
+    }
+
+    .invoice-details {
+      display: flex;
+      gap: pxToRem(60px);
+
+      .date-and-due {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+
+    .invoice-items {
+      background-color: hsl(231, 67%, 99%);
+      border-radius: pxToRem(8px);
+
+      .item {
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: pxToRem(20px) pxToRem(25px);
+        .item-name {
+          line-height: pxToRem(15px);
+          letter-spacing: pxToRem(-0.25px);
+          margin-bottom: pxToRem(5px);
+        }
+        .item-quantity {
+          color: $blue-grey;
+        }
+      }
+
+      .total {
+        background-color: hsl(231, 20%, 27%);
+        border-radius: 0 0 pxToRem(8px) pxToRem(8px);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: pxToRem(30px);
+        align-items: center;
+
+        .invoice-total {
+          font-size: pxToRem(24px);
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}
+
+.edit-modal {
+  position: absolute;
+  top: pxToRem(70px);
+  background-color: white;
+  width: 100%;
+
+  h3 {
+    font-weight: 700;
+    font-size: pxToRem(24px);
+    line-height: pxToRem(32px);
+    letter-spacing: pxToRem(-0.5px);
+    padding-bottom: pxToRem(20px);
+    padding: pxToRem(30px) pxToRem(20px);
+
+    span {
+      color: $blue-grey;
+    }
+  }
+
+  .edit-modal-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: pxToRem(20px);
+  }
+
+  .edit-modal-footer button:nth-of-type(1) {
+    grid-column: 2;
+  }
+
+  .edit-modal-footer button:nth-of-type(2) {
+    grid-column: 3;
+  }
+
+  button {
+    margin-left: pxToRem(5px);
+  }
+}
+
+.delete-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .delete-modal {
+    background-color: white;
+    padding: pxToRem(35px);
+    margin-inline: pxToRem(25px);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(15px);
+
+    h3 {
+      font-weight: 700;
+      font-size: pxToRem(24px);
+      line-height: pxToRem(32px);
+      letter-spacing: pxToRem(-0.5px);
+    }
+
+    p {
+      font-weight: 500;
+      font-size: pxToRem(13px);
+      line-height: pxToRem(22px);
+      color: $blue-grey;
+    }
+
+    .delete-wrapper {
+      display: grid;
+      grid-template-columns: 0.5fr 0.5fr 0.5fr;
+      gap: pxToRem(10px);
+    }
+    .delete-wrapper button:nth-of-type(1) {
+      grid-column: 2;
+    }
+
+    .delete-wrapper button:nth-of-type(2) {
+      grid-column: 3;
+    }
+  }
+}
+
+.button-wrapper {
+  display: grid;
+  grid-template-columns: 0.5fr 0.8fr 0.8fr;
+}

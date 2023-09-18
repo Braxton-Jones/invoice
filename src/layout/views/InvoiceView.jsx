@@ -1,30 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { fetchInvoices } from '../../api';
+import React, { useEffect, useRef, useState } from 'react';
+import { fetchInvoices, createInvoice } from '../../api';
 import add from '../../assets/icon-plus.svg';
 import down from '../../assets/icon-arrow-down.svg';
-import '../../sass/_layout.scss';
+import '../../sass/views_styling/_invoiceView.scss';
 import InvoiceList from '../componets/InvoiceList';
 import FilterSelect from '../componets/FilterSelect';
-import { useLoaderData } from 'react-router-dom';
+import { Form, useLoaderData } from 'react-router-dom';
+import ModalPortal from '../componets/Utility';
+import InvoiceForm from '../componets/InvoiceForm';
 
 export function loader() {
   return fetchInvoices();
 }
 
 export default function InvoiceView() {
+  const invoices = useLoaderData();
   const [loadingStatus, setLoadingStatus] = useState(true);
   const [filterStatus, setFilterStatus] = useState('all');
-  const [showModal, setShowModal] = useState(false);
-  const invoices = useLoaderData();
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [invoiceCount, setInvoiceCount] = useState(0);
+  const [isSuccessful, setIsSuccessful] = useState(false)
 
-  // Filter Functionality
-  const toggleModal = () => {
-    setShowModal(!showModal);
-    console.log(showModal);
+  const toggleFilterModal = () => {
+    setShowFilterModal(!showFilterModal);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseFilterModal = () => {
+    setShowFilterModal(false);
+  };
+
+  const toggleAddForm = () => {
+    setShowAddForm(!showAddForm);
+  };
+
+  const handleCloseAddForm = () => {
+    setShowAddForm(false);
+  };
+
+  const handleFilteredInvoices = (filteredInvoices) => {
+    const invoiceFilteredCount = filteredInvoices.length;
+    setInvoiceCount(invoiceFilteredCount);
   };
 
   return (
@@ -32,23 +48,37 @@ export default function InvoiceView() {
       <section className='subheading'>
         <div className='subheading-title'>
           <h3>Invoices</h3>
-          <p>{invoices.data.length} invoices</p>
+          <p>
+            {invoiceCount}{' '}
+            {filterStatus ? (filterStatus === 'all' ? '' : filterStatus) : ''}{' '}
+            invoices
+          </p>
         </div>
         <div className='subheading-interact'>
           <div className='filter-wrapper'>
-            <p className='filter-btn' onClick={toggleModal}>
+            <p className='filter-btn' onClick={toggleFilterModal}>
               Filter
               <img src={down} alt='down arrow' />
             </p>
-            {showModal && (
+            {showFilterModal && (
               <FilterSelect
                 setFilterStatus={setFilterStatus}
-                handleCloseModal={handleCloseModal}
+                handleCloseModal={handleCloseFilterModal}
               />
+            )}
+            {showAddForm && (
+              <ModalPortal onClose={() => setShowAddForm(false)}>
+                <div className='add-modal'>
+                  <div>
+                    <h3>New Invoice</h3>
+                  </div>
+                  <InvoiceForm toggleAddForm={toggleAddForm}/>
+                </div>
+              </ModalPortal>
             )}
           </div>
 
-          <button className='add-btn'>
+          <button className='add-btn' onClick={toggleAddForm}>
             <img src={add} alt='Add' />
             New
           </button>
@@ -58,6 +88,7 @@ export default function InvoiceView() {
         loadingStatus={loadingStatus}
         invoices={invoices.data}
         filterStatus={filterStatus}
+        onFilteredInvoices={handleFilteredInvoices}
       />
     </section>
   );

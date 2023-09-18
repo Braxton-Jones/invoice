@@ -2,17 +2,23 @@ import logo from '../../assets/logo.png';
 import sun from '../../assets/icon-sun.svg';
 import moon from '../../assets/icon-moon.svg';
 import profile from '../../assets/image-avatar.jpg';
-import '../../sass/componets/_header.scss';
+import '../../sass/views_styling/_appLayout.scss';
 import { Outlet } from 'react-router-dom';
-// Add Go Back button conditionally
-function Header() {
+import { useState } from 'react';
+function AppLayout() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Function to toggle the theme
+  function toggleTheme() {
+    setIsDarkMode(!isDarkMode);
+  }
   return (
     <>
-      <main className='light'>
+      <main className={isDarkMode ? 'dark' : 'light'}>
         <header>
           <img src={logo} className='logo' />
           <div className='icon-wrapper'>
-            <img src={moon} className='toggle' />
+            <img src={moon} className='toggle' onClick={toggleTheme} />
             <span></span>
             <img src={profile} className='profile' />
           </div>
@@ -23,4 +29,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AppLayout;

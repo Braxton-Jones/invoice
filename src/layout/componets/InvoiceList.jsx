@@ -1,18 +1,21 @@
+import React from 'react';
 import illustration from '../../assets/illustration-empty.svg';
 import Invoice from '../componets/Invoice';
+
 export default function InvoiceList(props) {
-  console.log('this', props.invoice);
+  const filteredInvoices = props.invoices.filter(
+    (invoice) =>
+      props.filterStatus === 'all' || invoice.status === props.filterStatus
+  );
+  props.onFilteredInvoices(filteredInvoices);
+
   return (
     <section className='invoice-list'>
       {/* Invoices Container */}
-      {props.invoices.length > 0 ? (
-        props.invoices
-          .filter(
-            (invoice) =>
-              props.filterStatus === 'all' ||
-              invoice.status === props.filterStatus
-          )
-          .map((invoice) => <Invoice key={invoice._id} invoice={invoice} />)
+      {filteredInvoices.length > 0 ? (
+        filteredInvoices.map((invoice) => (
+          <Invoice key={invoice._id} invoice={invoice} />
+        ))
       ) : (
         <div className='default-message'>
           <img src={illustration} alt='Illustration' />

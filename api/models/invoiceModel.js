@@ -7,8 +7,8 @@ const addressSchema = new mongoose.Schema({
   country: String,
 });
 const invoiceSchema = new mongoose.Schema({
-  id: { type: String, required: true },
-  createdAt: { type: String, required: true },
+  id: String,
+  createdAt: String,
   paymentDue: String,
   description: String,
   paymentTerms: Number,
@@ -22,10 +22,12 @@ const invoiceSchema = new mongoose.Schema({
       name: String,
       quantity: Number,
       price: Number,
-      total: Number,
     },
   ],
-  total: Number,
+  total: {
+    type: Number,
+    required: false,
+  },
 });
 
 const Invoice = mongoose.model("Invoice", invoiceSchema);

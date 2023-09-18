@@ -27,7 +27,7 @@ function Invoice(props) {
         <div className='invoice-details'>
           <div className='payment'>
             <p className='invoice-due'>Due {props.invoice.paymentDue}</p>
-            <p className='invoice-total'>$ {props.invoice.total}</p>
+            <p className='invoice-total'>${props.invoice.items.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0).toFixed(2)}</p>
           </div>
           <div className={`status ${invoiceClass}`}>
             <svg width='8' height='8' viewBox='0 0 9 9' fill='none'>

@@ -11,13 +11,19 @@ export const fetchInvoices = async () => {
   } catch (error) {
     console.log("Can't get the invoices", error);
     setTimeout(async () => {
-      await fetchInvoices(); // Use await here to ensure proper recursion
+      await fetchInvoices();
     }, 5000);
   }
 };
 
 export const createInvoice = async (invoiceData) => {
-  return api.post('/invoices', invoiceData);
+  try {
+    const response = await api.post('/invoices', invoiceData);
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const deleteInvoice = async (id) => {
@@ -37,12 +43,12 @@ export const getOneInvoice = async (id) => {
     console.log("Can't get the invoice", error);
   }
 };
-
 export const editInvoice = async (id, updatedData) => {
   try {
     const res = await api.put(`/invoices/${id}`, updatedData);
+    console.log(res);
     return res.data;
   } catch (error) {
-    console.log('Error editing', error);
+    console.log('Error editing:', error.message);
   }
 };

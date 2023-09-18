@@ -1,0 +1,65 @@
+@import '../util';
+
+.invoice {
+  min-width: 327px;
+  height: 135px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px 20px;
+
+  .customer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .invoice-id {
+      color: $blue-grey;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.25px;
+      line-height: 25px;
+    }
+
+    .invoice-client {
+      color: $blue-grey;
+      font-size: 13px;
+    }
+  }
+  .invoice-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .payment {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      .invoice-due {
+        font-size: 13px;
+        color: $blue-grey;
+      }
+      .invoice-total {
+        font-weight: 700;
+      }
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 105px;
+      border-radius: 6px;
+      padding: 12px 15px;
+
+      .status-text {
+        font-size: 15px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        font-weight: 700;
+      }
+    }
+  }
+}

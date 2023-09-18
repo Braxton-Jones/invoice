@@ -1,0 +1,165 @@
+@use 'sass:math';
+
+// Function for converting pixels to rems
+@function pxToRem($pxValue) {
+  @return math.div($pxValue, 16px) * 1rem;
+}
+
+// Colors
+$dark-purple: hsl(240, 57%, 62%);
+$light-purple: hsl(243, 60%, 74%);
+$dark-navy-blue: hsl(232, 23%, 16%);
+$navy-blue: hsl(230, 22%, 19%);
+$light-grey: hsl(235, 39%, 90%);
+$dark-grey: hsl(100, 5%, 53%);
+$blue-grey: hsl(232, 28%, 62%);
+$almost-black: hsl(220, 18%, 8%);
+$red-orange: hsl(4, 77%, 63%);
+$coral-pink: hsl(0, 100%, 80%);
+$almost-white: hsl(240, 27%, 97%);
+
+// Typography
+
+// Common button styles
+button {
+  border: none;
+  border-radius: pxToRem(24px);
+  font-weight: 500;
+  letter-spacing: pxToRem(-0.25px);
+  font-weight: 700;
+  height: pxToRem(48px);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1);
+}
+
+// Button Variants
+.variant-1 {
+  color: $blue-grey;
+  background-color: hsla(0, 0%, 79%, 0.219);
+}
+
+.variant-2 {
+  color: white;
+  background-color: $red-orange;
+}
+
+.variant-3 {
+  color: white;
+  background-color: $dark-purple;
+}
+
+.variant-4 {
+  background-color: #373b53;
+  color: hsla(231, 20%, 61%, 0.9);
+}
+
+.light {
+  background-color: $almost-white;
+
+  .invoice {
+    background-color: #fff;
+    .id {
+      color: black;
+    }
+  }
+
+  .draft {
+    background-color: hsla(0, 0%, 0%, 0.11);
+    color: $navy-blue;
+
+    svg {
+      circle {
+        fill: $navy-blue;
+      }
+    }
+  }
+
+  .paid {
+    background-color: hsla(160, 60%, 97%, 1);
+    color: hsla(160, 67%, 52%, 1);
+
+    svg {
+      circle {
+        fill: hsla(160, 67%, 52%, 1);
+      }
+    }
+  }
+
+  .pending {
+    background-color: hsla(34, 100%, 50%, 0.096);
+    color: hsl(34, 100%, 50%);
+
+    svg {
+      circle {
+        fill: hsl(34, 100%, 50%);
+      }
+    }
+  }
+}
+
+// Dark Theme Styles
+.dark {
+  background-color: $dark-navy-blue;
+  color: white;
+  .invoice {
+    background-color: hsl(233, 31%, 17%);
+
+    .id {
+      color: white;
+    }
+  }
+
+  .draft {
+    background-color: hsla(231, 75%, 93%, 0.2);
+    color: hsla(231, 75%, 93%, 1);
+
+    svg {
+      circle {
+        fill: hsla(231, 75%, 93%, 1);
+      }
+    }
+  }
+
+  .paid {
+    background-color: hsla(160, 67%, 52%, 0.1);
+    color: hsla(160, 67%, 52%, 1);
+
+    svg {
+      circle {
+        fill: hsla(160, 67%, 52%, 1);
+      }
+    }
+  }
+
+  .pending {
+    background-color: hsla(34, 100%, 50%, 0.096);
+    color: hsl(34, 100%, 50%);
+
+    svg {
+      circle {
+        fill: hsl(34, 100%, 50%);
+      }
+    }
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 105px;
+  border-radius: 6px;
+  padding: 12px 15px;
+
+  .status-text {
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    font-weight: 700;
+  }
+}
