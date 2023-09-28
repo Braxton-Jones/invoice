@@ -1,32 +1,23 @@
 @import '../util';
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-150%);
+    box-shadow: -90px 10px 10px rgba(224, 0, 253, 0.1);
+  }
+  100% {
+    transform: translateX(-2%);
+    box-shadow: -1px 0px 960px rgba(0, 0, 0, 0.8);
+  }
+}
+
 main {
   height: fit-content;
 }
 
-.filter-select {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: pxToRem(150px);
-  transform: translateX(-20%);
-  gap: pxToRem(5px);
-  background-color: white;
-  border-radius: pxToRem(10px);
-  box-shadow:
-    0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.2),
-    0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.3);
-  font-weight: 700;
-  font-size: pxToRem(15px);
-  border: none;
-  letter-spacing: pxToRem(-0.25px);
-  padding: pxToRem(20px);
-}
-
 .home-page {
-  margin: 0 pxToRem(20px);
-  height: 100vh;
-  max-width: pxToRem(700px);
   margin: 0 auto;
+  max-width: pxToRem(700px);
   padding-inline: pxToRem(25px);
 
   .subheading {
@@ -68,10 +59,6 @@ main {
         letter-spacing: pxToRem(-0.25px);
         font-weight: 700;
         cursor: pointer;
-
-        img.open {
-          transform: rotateX(180deg);
-        }
       }
 
       .add-btn {
@@ -79,7 +66,6 @@ main {
         background-color: $dark-purple;
         color: white;
         padding: pxToRem(6px) pxToRem(6px);
-
         border-radius: pxToRem(24px);
         gap: pxToRem(5px);
         font-weight: 700;
@@ -141,8 +127,11 @@ main {
 .add-modal {
   position: absolute;
   top: pxToRem(70px);
+  left: 0;
+  right: 0;
   background-color: white;
-  width: 100%;
+  padding-left: pxToRem(20px);
+
 
   h3 {
     font-weight: 700;
@@ -152,4 +141,58 @@ main {
     padding-bottom: pxToRem(20px);
     padding: pxToRem(30px) pxToRem(20px);
   }
+}
+
+.filter-select {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: pxToRem(150px);
+  transform: translateX(-50%);
+  gap: pxToRem(5px);
+  background-color: white;
+  border-radius: pxToRem(10px);
+  box-shadow:
+    0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.2),
+    0 pxToRem(4px) pxToRem(6px) rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  font-size: pxToRem(15px);
+  border: none;
+  letter-spacing: pxToRem(-0.25px);
+  padding: pxToRem(20px);
+}
+
+@media (min-width: 768px) {
+  .home-page {
+    margin-top: pxToRem(100px);
+    .subheading {
+      .subheading-title {
+        h3 {
+          font-size: pxToRem(36px);
+        }
+      }
+      .subheading-interact {
+        .filter-btn {
+          width: pxToRem(160px);
+          gap: 0px;
+        }
+      }
+    }
+  }
+  .filter-select {
+    top: pxToRem(150px);
+    transform: translateX(35%);
+  }
+}
+
+@media (min-width: 1080px) {
+  .add-modal {
+    max-width: pxToRem(650px);
+    top: 0;
+    left: pxToRem(100px);
+    border-radius: pxToRem(0px) pxToRem(20px) pxToRem(20px) pxToRem(0px);
+    animation: slideIn 1s ease forwards;
+  }
+
+
 }

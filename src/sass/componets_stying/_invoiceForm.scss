@@ -4,17 +4,15 @@
   display: flex;
   flex-direction: column;
   gap: pxToRem(20px);
-  padding-bottom: pxToRem(80px);
-  -webkit-box-shadow: inset -26px -143px 50px -98px rgba(0, 0, 0, 0.11);
-  -moz-box-shadow: inset -26px -143px 50px -98px rgba(0, 0, 0, 0.11);
-  box-shadow: inset -26px -143px 50px -98px rgba(0, 0, 0, 0.11);
-  padding: pxToRem(0px) pxToRem(20px) pxToRem(100px) pxToRem(20px);
+  width: 100%;
+  padding: pxToRem(0px) pxToRem(20px) pxToRem(0px) pxToRem(20px);
 
   legend {
     color: $dark-purple;
     font-weight: 700;
     font-size: pxToRem(15px);
-    padding-bottom: pxToRem(10px);
+    margin-top: pxToRem(30px);
+    margin-bottom: pxToRem(10px);
   }
   fieldset {
     border: none;
@@ -23,13 +21,12 @@
   label {
     color: $blue-grey;
     font-size: pxToRem(13px);
-    line-height: pxTorem(15px);
+    line-height: pxToRem(15px);
     letter-spacing: -0.1px;
   }
 
   input,
-  select,
-  textarea {
+  select {
     display: block;
     font-weight: 700;
   }
@@ -47,19 +44,20 @@
   }
   input {
     min-height: pxToRem(48px);
-    padding-inline: pxToRem(15px);
+    padding: pxToRem(10px) pxToRem(10px) pxToRem(8px);
   }
-}
-label {
-  display: block;
-  margin-bottom: 5px;
 }
 
 select {
   max-height: pxToRem(48px);
-  padding: pxToRem(15px);
+  padding: pxToRem(10px) pxToRem(14px) pxToRem(12px) pxToRem(8px);
   appearance: none;
 }
+
+select option {
+  font-weight: 400;
+}
+
 input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
@@ -79,8 +77,30 @@ input[type='number'] {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: pxToRem(20px);
-  .input-label-pair:not(:nth-child(4)):not(:nth-child(5)) {
+
+  .input-label-pair:nth-child(1),
+  .input-label-pair:nth-child(2),
+  .input-label-pair:nth-child(3),
+  .input-label-pair:nth-child(6),
+  .input-label-pair:nth-child(7),
+  .input-label-pair:nth-child(8),
+  .input-label-pair:nth-child(9) {
     grid-column: 1 / -1;
+  }
+
+  .input-label-pair:nth-child(7) input {
+    color: $blue-grey;
+  }
+}
+
+.additional-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: pxToRem(25px);
+  .input-label-pair:nth-child(1),
+  .input-label-pair:nth-child(2),
+  .input-label-pair:nth-child(3) {
+    grid-column: 1/-1;
   }
 }
 
@@ -91,30 +111,33 @@ input[type='number'] {
   gap: pxToRem(40px);
   .item {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
     gap: pxToRem(15px);
 
     .input-label-pair:nth-child(1) {
       grid-column: 1 / -1;
     }
 
-    p {
-      padding: pxToRem(10px) 0;
+    .input-label-pair:nth-child(4) {
+      align-self: baseline;
+    }
+
+    .total {
+      padding: pxToRem(14px) 0;
       color: $dark-grey;
       font-weight: 700;
     }
 
     img {
-      align-self: center;
-      padding-top: pxToRem(10px);
+      padding-top:pxToRem(38px) ;
     }
   }
 }
-
-.add-btn {
+// Dynamic Footers
+.add-items-btn {
   width: 100%;
   color: hsl(231, 36%, 63%);
-  background-color: hsl(228, 71%, 99%);
+  background-color: hsl(240, 18%, 97%);
 }
 
 .add-footer {
@@ -122,11 +145,6 @@ input[type='number'] {
   grid-template-columns: 0.5fr 0.8fr 0.8fr;
   padding: pxToRem(20px);
   gap: pxToRem(8px);
-}
-
-.edit-footer{
-  display: grid;
-    grid-template-columns: 0.5fr 0.8fr 0.8fr;
 }
 
 .edit-footer {
@@ -144,5 +162,71 @@ input[type='number'] {
 }
 
 button {
-  margin-left: pxToRem(5px);
+  margin-left: pxToRem(3px);
+}
+
+.invoice-form-accent {
+  -webkit-box-shadow: inset -26px -143px 50px -98px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: inset -26px -143px 50px -98px rgba(0, 0, 0, 0.11);
+  box-shadow: inset -26px -143px 50px -98px rgba(0, 0, 0, 0.11);
+  padding-bottom: pxToRem(100px);
+}
+
+@media (min-width: 1080px) {
+  form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .invoice-form {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: pxToRem(0px);
+
+    legend {
+      margin: 0;
+    }
+  }
+
+  .sender-info {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    .input-label-pair:nth-child(4) {
+      grid-column: auto;
+    }
+  }
+
+  .bill-to-info {
+    grid-template-columns: repeat(3, 1fr);
+    .input-label-pair:nth-child(6) {
+      grid-column: auto;
+    }
+  }
+
+  .additional-info {
+    .input-label-pair:nth-child(1),
+    .input-label-pair:nth-child(2) {
+      grid-column: auto;
+    }
+  }
+
+  .invoice-items {
+    margin-top: 0;
+    .item {
+      grid-template-columns: 2.5fr 0.8fr 1.2fr 1fr 1fr;
+      height: 100%;
+
+      .input-label-pair:nth-child(1) {
+        grid-column: auto;
+      }
+    }
+  }
+  .invoice-form-accent {
+    display: none;
+  }
+  .add-items-btn {
+    margin-bottom: pxToRem(20px);
+    padding: pxToRem(10px);
+  }
 }

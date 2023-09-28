@@ -5,8 +5,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-height: 72px;
+  height: 72px;
   margin-bottom: 30px;
+  z-index: 10;
 
   .logo {
     height: 72px;
@@ -27,6 +28,36 @@ header {
     .profile {
       max-width: 32px;
       border-radius: 100%;
+    }
+  }
+}
+
+@media (min-width: 1080px) {
+  main {
+    display: flex;
+  }
+  header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+    width: pxToRem(100px);
+    border-radius: pxToRem(0px) pxToRem(20px) pxToRem(20px) pxToRem(0px);
+
+    .logo {
+      min-height: pxToRem(100px);
+    }
+
+    .icon-wrapper {
+      flex-direction: column;
+
+      .toggle,
+      .profile {
+        transform: scale(1.5);
+      }
+      span {
+        transform: rotate(90deg);
+      }
     }
   }
 }

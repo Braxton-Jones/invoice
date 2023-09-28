@@ -9,17 +9,14 @@ export const fetchInvoices = async () => {
     const res = await api.get('/invoices');
     return { data: res.data, loadingStatus: false };
   } catch (error) {
-    console.log("Can't get the invoices", error);
-    setTimeout(async () => {
-      await fetchInvoices();
-    }, 5000);
+    return null
   }
 };
 
 export const createInvoice = async (invoiceData) => {
   try {
     const response = await api.post('/invoices', invoiceData);
-    console.log(response)
+    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);

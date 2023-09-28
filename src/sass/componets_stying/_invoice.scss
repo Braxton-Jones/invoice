@@ -63,3 +63,24 @@
     }
   }
 }
+@media (min-width: 768px) {
+  .invoice {
+    max-height: pxToRem(72px);
+    .customer-info {
+      display: grid;
+      grid-template-columns: 1.5fr fit-content(100px) 4fr 3fr 1fr 0.5fr;
+      gap: pxToRem(20px);
+      align-items: center;
+    }
+    .invoice-due {
+      font-size: 13px;
+      color: $blue-grey;
+    }
+    .invoice-total {
+      font-weight: 700;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+}

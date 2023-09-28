@@ -72,9 +72,13 @@ a {
   outline: none;
 }
 
-body {
-  height: 100vh;
+main {
+  min-height: 100vh;
 }
-#root {
-  height: 100vh;
+
+.errors {
+  color: #9d8df8;
+  font-size: 13px;
+  padding-top: 5px;
 }
+

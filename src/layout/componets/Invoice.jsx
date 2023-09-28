@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useLiveBrowserWidth } from './Utility';
+import arrow from '../../assets/icon-arrow-right.svg';
 
 function Invoice(props) {
   const getStatusTextAndStyle = () => {
@@ -15,8 +17,8 @@ function Invoice(props) {
   };
 
   const { text, invoiceClass } = getStatusTextAndStyle();
-  return (
-    <div className='invoice'>
+  const smallInvoice = (
+    <>
       <Link to={`/view/${props.invoice._id}`}>
         <div className='customer-info'>
           <p className='invoice-id'>
@@ -27,7 +29,20 @@ function Invoice(props) {
         <div className='invoice-details'>
           <div className='payment'>
             <p className='invoice-due'>Due {props.invoice.paymentDue}</p>
-            <p className='invoice-total'>${props.invoice.items.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0).toFixed(2)}</p>
+            <p className='invoice-total'>
+              ${' '}
+              {props.invoice.items
+                .reduce(
+                  (total, item) =>
+                    total + parseFloat(item.price) * item.quantity,
+                  0
+                )
+                .toLocaleString('en-US', {
+                  style: 'decimal',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+            </p>
           </div>
           <div className={`status ${invoiceClass}`}>
             <svg width='8' height='8' viewBox='0 0 9 9' fill='none'>
@@ -37,6 +52,48 @@ function Invoice(props) {
           </div>
         </div>
       </Link>
+    </>
+  );
+  const largeInvoice = (
+    <>
+      <Link to={`/view/${props.invoice._id}`}>
+        <div className='customer-info'>
+          <p className='invoice-id'>
+            #<span className='id'>{props.invoice.id}</span>
+          </p>
+          <p className='invoice-due'>Due {props.invoice.paymentDue}</p>
+          <p className='invoice-client'>{props.invoice.clientName}</p>
+          <p className='invoice-total'>
+            <p className='invoice-total'>
+              ${' '}
+              {props.invoice.items
+                .reduce(
+                  (total, item) =>
+                    total + parseFloat(item.price) * item.quantity,
+                  0
+                )
+                .toLocaleString('en-US', {
+                  style: 'decimal',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+            </p>
+          </p>
+          <div className={`status ${invoiceClass}`}>
+            <svg width='8' height='8' viewBox='0 0 9 9' fill='none'>
+              <circle cx='4' cy='4' r='4' fill='#FF8F00' />
+            </svg>
+            <p className={`status-text`}>{text}</p>
+          </div>
+          <img src={arrow} alt='arrow' />
+        </div>
+      </Link>
+    </>
+  );
+  const browserWidth = useLiveBrowserWidth();
+  return (
+    <div className='invoice'>
+      {browserWidth < 768 ? smallInvoice : largeInvoice}
     </div>
   );
 }
