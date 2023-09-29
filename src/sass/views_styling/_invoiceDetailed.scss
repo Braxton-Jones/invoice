@@ -273,6 +273,9 @@
 }
 
 @media (min-width: 1080px){
+    .view-container{
+      min-width: pxToRem(730px);
+    }
     .invoice-details-table{
       width: 100%;
       padding-inline: pxToRem(20px);

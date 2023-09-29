@@ -25,7 +25,7 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
       />
       <Route
-        path='view/:id'
+        path='/view/:id'
         element={<InvoiceDetailedView />}
         loader={viewDetailedLoader}
         errorElement={<ErrorPage />}
