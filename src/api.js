@@ -1,10 +1,19 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://invoice-mgqv.onrender.com/',
+  baseURL: 'http://localhost:3000',
 });
 
+// baseURL: 'https://invoice-mgqv.onrender.com/'
+export async function sleep(ms) {
+  return new Promise((resolve) => {
+      setTimeout(() => {
+          resolve()
+      }, ms)
+  })
+}
 export const fetchInvoices = async () => {
+  await sleep(5000)
   try {
     const res = await api.get('/invoices');
     return { data: res.data, loadingStatus: false };

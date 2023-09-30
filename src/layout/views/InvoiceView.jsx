@@ -1,20 +1,21 @@
-import React, {useState } from 'react';
+import React, {useState, Suspense } from 'react';
 import { fetchInvoices } from '../../api';
 import add from '../../assets/icon-plus.svg';
 import down from '../../assets/icon-arrow-down.svg';
 import '../../sass/views_styling/_invoiceView.scss';
 import InvoiceList from '../componets/InvoiceList';
 import FilterSelect from '../componets/FilterSelect';
-import {useLoaderData } from 'react-router-dom';
+import {useLoaderData, defer, Await } from 'react-router-dom';
 import { useLiveBrowserWidth } from '../componets/Utility';
 import InvoiceForm from '../componets/InvoiceForm';
 
 export function loader() {
-  return fetchInvoices();
+  const invoicePromise = fetchInvoices()
+  return defer({invoices: invoicePromise})
 }
 
 export default function InvoiceView() {
-  const invoices = useLoaderData();
+  const invoicesData = useLoaderData();
   const [loadingStatus, setLoadingStatus] = useState(true);
   const [filterStatus, setFilterStatus] = useState('all');
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -39,7 +40,7 @@ export default function InvoiceView() {
   };
 
   const handleFilteredInvoices = (filteredInvoices) => {
-    const invoiceFilteredCount = filteredInvoices.length;
+    const invoiceFilteredCount = filteredInvoices?.length ?? 0;
     setInvoiceCount(invoiceFilteredCount);
   };
 
@@ -89,13 +90,21 @@ export default function InvoiceView() {
           </button>
         </div>
       </section>
-      {!invoices ?  "" :  
-      <InvoiceList
-        loadingStatus={loadingStatus}
-        invoices={invoices.data}
-        filterStatus={filterStatus}
-        onFilteredInvoices={handleFilteredInvoices}
-      />}
+      <Suspense fallback={<h2>Loading???</h2>}>
+        <Await resolve={invoicesData.invoices}>
+          {data => {
+            console.log("data", data)
+            return(
+               <InvoiceList
+               invoices={data}
+               filterStatus={filterStatus}
+               onFilteredInvoices={handleFilteredInvoices}
+       />
+            )
+          }}
+
+        </Await>
+      </Suspense>
      
     </section>
   );
