@@ -9,8 +9,6 @@ export default function InvoiceList(props) {
   );
   props.onFilteredInvoices(filteredInvoices);
 
-  
-
   return (
     <section className='invoice-list'>
       {/* Invoices Container */}
@@ -18,7 +16,8 @@ export default function InvoiceList(props) {
         filteredInvoices.map((invoice) => (
           <Invoice key={invoice._id} invoice={invoice} />
         ))
-      ) : (<div className='default-message'>
+      ) : (
+        <div className='default-message'>
           <img src={illustration} alt='Illustration' />
           <h3>There is nothing here</h3>
           <p>

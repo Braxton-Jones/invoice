@@ -36,6 +36,23 @@ button:hover {
   filter: brightness(1);
 }
 
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 105px;
+  border-radius: 6px;
+  padding: 12px 15px;
+
+  .status-text {
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    font-weight: 700;
+  }
+}
+
 // Button Variants
 .variant-1 {
   color: $blue-grey;
@@ -57,109 +74,191 @@ button:hover {
   color: hsla(231, 20%, 61%, 0.9);
 }
 
-.light {
-  background-color: $almost-white;
+/*
+-------------
+Theme Styling
+-------------*/
+// BRea
 
-  .invoice {
-    background-color: #fff;
-    .id {
-      color: black;
-    }
+/* Define keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
+/* Define colors as variables for reusability */
+:root {
+  --almost-white: #f5f5f5;
+  --blue-grey: #64748b;
+}
+
+/* Shared styles for elements with transitions */
+.light, .dark {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Common styles for .invoice and .id elements */
+.invoice {
+  background-color: #fff;
+}
+
+
+/* Styles for the light theme */
+.light {
+  background-color: var(--almost-white);
+
+  /* Keyframe animation for smooth transition */
+  animation: fadeIn 0.3s;
+
+  /* Common styles for .draft, .paid, and .pending elements */
   .draft {
     background-color: hsla(0, 0%, 0%, 0.11);
     color: $navy-blue;
-
+  
     svg {
       circle {
         fill: $navy-blue;
       }
     }
   }
-
+  
   .paid {
     background-color: hsla(160, 60%, 97%, 1);
     color: hsla(160, 67%, 52%, 1);
-
+  
     svg {
       circle {
         fill: hsla(160, 67%, 52%, 1);
       }
     }
   }
-
+  
   .pending {
     background-color: hsla(34, 100%, 50%, 0.096);
     color: hsl(34, 100%, 50%);
-
+  
     svg {
       circle {
         fill: hsl(34, 100%, 50%);
       }
     }
   }
+
+  .invoice {
+    .id{
+      color: black;
+    }
+  }
 }
 
-// Dark Theme Styles
+/* Styles for the dark theme */
 .dark {
-  background-color: $dark-navy-blue;
+  background-color: hsl(227, 23%, 12%);
   color: white;
+
+  /* Keyframe animation for smooth transition */
+  animation: fadeIn 0.3s;
+
+  /* Common styles for .draft, .paid, and .pending elements */
   .invoice {
     background-color: hsl(233, 31%, 17%);
 
-    .id {
+    .id{
       color: white;
     }
   }
-
+  
   .draft {
     background-color: hsla(231, 75%, 93%, 0.2);
     color: hsla(231, 75%, 93%, 1);
-
+  
     svg {
       circle {
         fill: hsla(231, 75%, 93%, 1);
       }
     }
   }
-
+  
   .paid {
     background-color: hsla(160, 67%, 52%, 0.1);
     color: hsla(160, 67%, 52%, 1);
-
+  
     svg {
       circle {
         fill: hsla(160, 67%, 52%, 1);
       }
     }
   }
-
+  
   .pending {
     background-color: hsla(34, 100%, 50%, 0.096);
     color: hsl(34, 100%, 50%);
-
+  
     svg {
       circle {
         fill: hsl(34, 100%, 50%);
       }
     }
   }
-}
+  
 
-.status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 105px;
-  border-radius: 6px;
-  padding: 12px 15px;
+  .filter-select {
+    color: black;
+  }
 
-  .status-text {
-    font-size: 15px;
-    line-height: 15px;
-    letter-spacing: -0.25px;
-    font-weight: 700;
+  .add-modal, .edit-modal {
+    background-color: hsl(233, 30%, 11);
+
+    /* Common styles for input and select elements */
+    input, select {
+      background-color: hsl(233, 31%, 17%);
+      border-color: hsl(233, 30%, 21%);
+      color: var(--blue-grey);
+    }
+
+    /* Styles for buttons in modals */
+    .add-items-btn {
+      background-color: hsl(233, 30%, 21%);
+    }
+
+    /* Styles for footer buttons */
+    .add-footer button, .edit-modal-footer button {
+      color: white;
+    }
+  }
+
+  .view-container {
+    .view-status {
+      background-color: hsl(233, 31%, 17%);
+      color: white;
+      button {
+        color: white;
+      }
+    }
+
+    .invoice-view {
+      background-color: hsl(233, 31%, 17%);
+
+      .invoice-details-items {
+        background-color: hsl(233, 30%, 21%);
+        color: white;
+
+        .item .item-quantity {
+          color: white;
+        }
+
+        .total {
+          background-color: hsl(228, 29%, 7%);
+        }
+      }
+
+      .invoice-details-table, thead, td {
+        color: white;
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://localhost:3000',
+  // https://invoice-mgqv.onrender.com
 });
 
 export const fetchInvoices = async (retryCount = 0) => {
@@ -13,11 +14,10 @@ export const fetchInvoices = async (retryCount = 0) => {
     const res = await api.get('/invoices');
     return { data: res.data, loadingStatus: false };
   } catch (error) {
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return fetchInvoices(retryCount + 1);
   }
 };
-
 
 export const createInvoice = async (invoiceData) => {
   try {

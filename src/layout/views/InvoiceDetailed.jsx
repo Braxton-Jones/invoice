@@ -198,42 +198,44 @@ function InvoiceDetailedView() {
 
             {/* Items */}
             <section className='invoice-details-items'>
-            {browserWidth > 1080 ? (
-        <table className='invoice-details-table'>
-          <thead>
-            <tr>
-              <th>Item Name</th>
-              <th>Qty.</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {invoiceData.items.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.quantity}</td>
-                <td>$ {item.price.toFixed(2)}</td>
-                <td>$ {(item.price * item.quantity).toFixed(2)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        invoiceData.items.map((item) => (
-          <div className='item' key={item.id}>
-            <div className='item-details'>
-              <p className='item-name'>{item.name}</p>
-              <p className='item-quantity'>
-                {item.quantity} x $ {parseFloat(item.price).toFixed(2)}
-              </p>
-            </div>
-            <div className='item-cost'>
-              <p>$ {parseFloat(item.price).toFixed(2) * item.quantity}</p>
-            </div>
-          </div>
-        ))
-      )}
+              {browserWidth > 1080 ? (
+                <table className='invoice-details-table'>
+                  <thead>
+                    <tr>
+                      <th>Item Name</th>
+                      <th>Qty.</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {invoiceData.items.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>{item.quantity}</td>
+                        <td>$ {item.price.toFixed(2)}</td>
+                        <td>$ {(item.price * item.quantity).toFixed(2)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                invoiceData.items.map((item) => (
+                  <div className='item' key={item.id}>
+                    <div className='item-details'>
+                      <p className='item-name'>{item.name}</p>
+                      <p className='item-quantity'>
+                        {item.quantity} x $ {parseFloat(item.price).toFixed(2)}
+                      </p>
+                    </div>
+                    <div className='item-cost'>
+                      <p>
+                        $ {parseFloat(item.price).toFixed(2) * item.quantity}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
               <div className='total'>
                 <p>Amount Due</p>
                 <p className='invoice-total'>
@@ -253,12 +255,12 @@ function InvoiceDetailedView() {
       </section>
 
       {showEditModal && (
-          <div className='edit-modal'>
-            <InvoiceForm
-              currentInvoice={invoiceData}
-              toggleEditForm={toggleEditModal}
-            />
-          </div>     
+        <div className='edit-modal'>
+          <InvoiceForm
+            currentInvoice={invoiceData}
+            toggleEditForm={toggleEditModal}
+          />
+        </div>
       )}
 
       {showDeleteModal && (

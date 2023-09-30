@@ -1,17 +1,17 @@
-import React, {useState, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { fetchInvoices } from '../../api';
 import add from '../../assets/icon-plus.svg';
 import down from '../../assets/icon-arrow-down.svg';
 import '../../sass/views_styling/_invoiceView.scss';
 import InvoiceList from '../componets/InvoiceList';
 import FilterSelect from '../componets/FilterSelect';
-import {useLoaderData, defer, Await } from 'react-router-dom';
+import { useLoaderData, defer, Await } from 'react-router-dom';
 import { useLiveBrowserWidth } from '../componets/Utility';
 import InvoiceForm from '../componets/InvoiceForm';
 
 export function loader() {
-  const invoicePromise = fetchInvoices()
-  return defer({invoices: invoicePromise})
+  const invoicePromise = fetchInvoices();
+  return defer({ invoices: invoicePromise });
 }
 
 export default function InvoiceView() {
@@ -20,7 +20,6 @@ export default function InvoiceView() {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [invoiceCount, setInvoiceCount] = useState(0);
-
 
   const toggleFilterModal = () => {
     setShowFilterModal(!showFilterModal);
@@ -75,11 +74,9 @@ export default function InvoiceView() {
               />
             )}
             {showAddForm && (
-                <div className='add-modal'>
-                  <InvoiceForm toggleAddForm={toggleAddForm} />
-                </div>
-               
-              
+              <div className='add-modal'>
+                <InvoiceForm toggleAddForm={toggleAddForm} />
+              </div>
             )}
           </div>
 
@@ -89,26 +86,26 @@ export default function InvoiceView() {
           </button>
         </div>
       </section>
-      <Suspense fallback={
-      <div class="loading-spinner">
-          <div class="spinner"></div>
-      </div>
-}>
+      <Suspense
+        fallback={
+          <div class='loading-spinner'>
+            <div class='spinner'></div>
+          </div>
+        }
+      >
         <Await resolve={invoicesData.invoices}>
-          {data => {
-            console.log("data", data)
-            return(
-               <InvoiceList
-               invoices={data}
-               filterStatus={filterStatus}
-               onFilteredInvoices={handleFilteredInvoices}
-       />
-            )
+          {(data) => {
+            console.log('data', data);
+            return (
+              <InvoiceList
+                invoices={data}
+                filterStatus={filterStatus}
+                onFilteredInvoices={handleFilteredInvoices}
+              />
+            );
           }}
-
         </Await>
       </Suspense>
-     
     </section>
   );
 }

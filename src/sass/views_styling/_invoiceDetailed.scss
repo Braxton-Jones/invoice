@@ -250,7 +250,6 @@
 
     .date-and-due {
       grid-area: date_due;
-    
     }
 
     .bill-to {
@@ -272,88 +271,72 @@
   }
 }
 
-@media (min-width: 1080px){
-    .view-container{
-      min-width: pxToRem(730px);
-    }
-    .invoice-details-table{
-      width: 100%;
-      padding-inline: pxToRem(20px);
+@media (min-width: 1080px) {
+  .view-container {
+    min-width: pxToRem(730px);
+  }
+  .invoice-details-table {
+    width: 100%;
+    padding-inline: pxToRem(20px);
 
-      thead{
-        text-align: left;
-        font-size: pxToRem(13px);
-        font-weight: 300;
-        color: $blue-grey;        
-      }
-
-      th{
-        padding: pxToRem(20px) pxToRem(0px) ;
-      }
-
-      th:nth-child(2){
-        text-align: center;
-      }
-      th:nth-child(3){
-        text-align: end;
-      }
-      th:nth-child(4){
-        text-align: end;
-      }
-
-      td:nth-child(3){
-        text-align: end;
-        color: $blue-grey;
-        font-weight: 600;
-      }
-      td:nth-child(4){
-        text-align: end;
-        font-weight: 600;
-      }
-      td:nth-child(2){
-        text-align: center;
-        color: $blue-grey;
-      }
-
-      td:nth-child(1){
-        font-weight: 600;
-      }
-
-      td:nth-last-child(n){
-        padding-bottom: pxToRem(25px);
-      }
-
-     
-
-      
-
-      
-
-      
-    }
-
-    .subtitle{
+    thead {
+      text-align: left;
       font-size: pxToRem(13px);
       font-weight: 300;
       color: $blue-grey;
     }
 
-    .total{
-      
-      grid-area: amount;
+    th {
+      padding: pxToRem(20px) pxToRem(0px);
     }
 
-    .edit-modal {
-      max-width: pxToRem(600px);
-      top: 0;
-      left: pxToRem(100px);
-      border-radius: pxToRem(0px) pxToRem(20px) pxToRem(20px) pxToRem(0px);
+    th:nth-child(2) {
+      text-align: center;
+    }
+    th:nth-child(3) {
+      text-align: end;
+    }
+    th:nth-child(4) {
+      text-align: end;
+    }
+
+    td:nth-child(3) {
+      text-align: end;
+      color: $blue-grey;
+      font-weight: 600;
+    }
+    td:nth-child(4) {
+      text-align: end;
+      font-weight: 600;
+    }
+    td:nth-child(2) {
+      text-align: center;
+      color: $blue-grey;
+    }
+
+    td:nth-child(1) {
+      font-weight: 600;
+    }
+
+    td:nth-last-child(n) {
+      padding-bottom: pxToRem(25px);
     }
   }
 
+  .subtitle {
+    font-size: pxToRem(13px);
+    font-weight: 300;
+    color: $blue-grey;
+  }
 
+  .total {
+    grid-area: amount;
+  }
 
- 
-
-
-
+  .edit-modal {
+    max-width: pxToRem(600px);
+    top: 0;
+    left: pxToRem(100px);
+    border-radius: pxToRem(0px) pxToRem(20px) pxToRem(20px) pxToRem(0px);
+  }
+}
