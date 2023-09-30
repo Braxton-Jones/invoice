@@ -196,3 +196,26 @@ main {
 
 
 }
+
+// Loading Circle!
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.spinner {
+  width: 200px;
+  height: 200px; 
+  border: 5px solid #c5adfc; 
+  border-top: 8px solid transparent;
+  border-radius: 90%;
+  animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

@@ -90,7 +90,11 @@ export default function InvoiceView() {
           </button>
         </div>
       </section>
-      <Suspense fallback={<h2>Loading???</h2>}>
+      <Suspense fallback={
+      <div class="loading-spinner">
+          <div class="spinner"></div>
+      </div>
+}>
         <Await resolve={invoicesData.invoices}>
           {data => {
             console.log("data", data)

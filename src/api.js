@@ -13,7 +13,6 @@ export async function sleep(ms) {
   })
 }
 export const fetchInvoices = async () => {
-  await sleep(5000)
   try {
     const res = await api.get('/invoices');
     return { data: res.data, loadingStatus: false };
