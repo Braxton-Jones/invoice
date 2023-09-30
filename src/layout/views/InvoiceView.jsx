@@ -16,7 +16,6 @@ export function loader() {
 
 export default function InvoiceView() {
   const invoicesData = useLoaderData();
-  const [loadingStatus, setLoadingStatus] = useState(true);
   const [filterStatus, setFilterStatus] = useState('all');
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
