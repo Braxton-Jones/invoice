@@ -6,8 +6,8 @@ const api = axios.create({
 });
 
 export const fetchInvoices = async (retryCount = 0) => {
-  if (retryCount >= 10) {
-    return null;
+  if (retryCount >= 5) {
+    return JSON.parse(data);
   }
 
   try {

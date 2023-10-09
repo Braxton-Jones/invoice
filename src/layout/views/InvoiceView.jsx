@@ -87,10 +87,17 @@ export default function InvoiceView() {
         </div>
       </section>
       <Suspense
-        fallback={
+        fallback={<>
+          <div className="loading-message">
+            <p>Our project uses the free plan from render.com, 
+            which may result in longer loading times, 
+            especially after periods of inactivity. 
+            We appreciate your understanding and patience</p>
+          </div>
           <div class='loading-spinner'>
             <div class='spinner'></div>
           </div>
+          </>
         }
       >
         <Await resolve={invoicesData.invoices}>

@@ -194,6 +194,10 @@ main {
   }
 }
 
+.loading-message p{
+  padding: pxToRem(30px);
+  line-height: 30px;
+}
 // Loading Circle!
 .loading-spinner {
   display: flex;
