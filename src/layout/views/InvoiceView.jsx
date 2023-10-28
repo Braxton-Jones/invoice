@@ -8,7 +8,6 @@ import FilterSelect from '../componets/FilterSelect';
 import { useLoaderData, defer, Await } from 'react-router-dom';
 import { useLiveBrowserWidth } from '../componets/Utility';
 import InvoiceForm from '../componets/InvoiceForm';
-import { invoices } from '../../data';
 
 export function loader() {
   const invoicePromise = fetchInvoices();
@@ -97,7 +96,6 @@ export default function InvoiceView() {
       >
         <Await resolve={invoicesData.invoices}>
           {(data) => {
-            console.log('data', data);
             return (
       <InvoiceList
                 invoices={data}

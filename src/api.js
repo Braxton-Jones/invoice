@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://invoice-mgqv.onrender.com',
+  baseURL: 'https://charming-slug-nightgown.cyclic.app',
  
 });
 
@@ -11,7 +11,7 @@ export const fetchInvoices = async (retryCount = 0) => {
   }
 
   try {
-    const res = await api.get('/invoices');
+    const res = await api.get('/');
     return { data: res.data, loadingStatus: false };
   } catch (error) {
     await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -21,7 +21,7 @@ export const fetchInvoices = async (retryCount = 0) => {
 
 export const createInvoice = async (invoiceData) => {
   try {
-    const response = await api.post('/invoices', invoiceData);
+    const response = await api.post('/', invoiceData);
     console.log(response);
     return response.data;
   } catch (error) {
@@ -31,7 +31,7 @@ export const createInvoice = async (invoiceData) => {
 
 export const deleteInvoice = async (id) => {
   try {
-    const res = await api.delete(`/invoices/${id}`);
+    const res = await api.delete(`/${id}`);
     return res.data;
   } catch (error) {
     console.log('Error deleting', error);
@@ -40,7 +40,7 @@ export const deleteInvoice = async (id) => {
 
 export const getOneInvoice = async (id) => {
   try {
-    const res = await api.get(`/invoices/${id}`);
+    const res = await api.get(`/${id}`);
     return res.data;
   } catch (error) {
     console.log("Can't get the invoice", error);
@@ -48,7 +48,7 @@ export const getOneInvoice = async (id) => {
 };
 export const editInvoice = async (id, updatedData) => {
   try {
-    const res = await api.put(`/invoices/${id}`, updatedData);
+    const res = await api.put(`/${id}`, updatedData);
     console.log(res);
     return res.data;
   } catch (error) {
