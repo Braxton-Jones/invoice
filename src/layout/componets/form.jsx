@@ -1,5 +1,4 @@
 const validateSchema = (values) => {
-  console.log(values);
   const errors = {
     senderAddress: {},
     clientAddress: {},
@@ -69,4 +68,4 @@ const validateSchema = (values) => {
       Add New Item
     </button>
   </section>
-)}
+)}}

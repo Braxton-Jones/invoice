@@ -8,6 +8,7 @@ import FilterSelect from '../componets/FilterSelect';
 import { useLoaderData, defer, Await } from 'react-router-dom';
 import { useLiveBrowserWidth } from '../componets/Utility';
 import InvoiceForm from '../componets/InvoiceForm';
+import { invoices } from '../../data';
 
 export function loader() {
   const invoicePromise = fetchInvoices();
@@ -86,14 +87,8 @@ export default function InvoiceView() {
           </button>
         </div>
       </section>
-      <Suspense
+<Suspense
         fallback={<>
-          <div className="loading-message">
-            <p>Our project uses the free plan from render.com, 
-            which may result in longer loading times, 
-            especially after periods of inactivity. 
-            We appreciate your understanding and patience</p>
-          </div>
           <div class='loading-spinner'>
             <div class='spinner'></div>
           </div>
@@ -104,12 +99,12 @@ export default function InvoiceView() {
           {(data) => {
             console.log('data', data);
             return (
-              <InvoiceList
+      <InvoiceList
                 invoices={data}
                 filterStatus={filterStatus}
                 onFilteredInvoices={handleFilteredInvoices}
-              />
-            );
+      />
+  );
           }}
         </Await>
       </Suspense>
