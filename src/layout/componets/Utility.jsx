@@ -25,27 +25,27 @@ const ModalPortal = ({ children, onClose }) => {
 };
 export default ModalPortal;
 
-export function generateRandomId() {
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const numbers = '0123456789';
-  let randomId = '';
+// export function generateRandomId() {
+//   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//   const numbers = '0123456789';
+//   let randomId = '';
 
-  for (let i = 0; i < 2; i++) {
-    const randomLetter = letters.charAt(
-      Math.floor(Math.random() * letters.length)
-    );
-    randomId += randomLetter;
-  }
+//   for (let i = 0; i < 2; i++) {
+//     const randomLetter = letters.charAt(
+//       Math.floor(Math.random() * letters.length)
+//     );
+//     randomId += randomLetter;
+//   }
 
-  for (let i = 0; i < 4; i++) {
-    const randomNumber = numbers.charAt(
-      Math.floor(Math.random() * numbers.length)
-    );
-    randomId += randomNumber;
-  }
+//   for (let i = 0; i < 4; i++) {
+//     const randomNumber = numbers.charAt(
+//       Math.floor(Math.random() * numbers.length)
+//     );
+//     randomId += randomNumber;
+//   }
 
-  return randomId;
-}
+//   return randomId;
+// }
 export function generateFutureDate(date, days) {
   const start = new Date(date);
   const daysToPay = days;
@@ -64,11 +64,27 @@ export function generateDate(date) {
   return `${day} ${month} ${year}`;
 }
 
-export function createNewInvoiceObj(data) {
+function getDueDate(postedDate, paymentTerms) {
+  if (typeof paymentTerms !== 'number' || paymentTerms <= 0) {
+    throw new Error('Payment terms should be a positive number');
+  }
+  const dueDate = new Date(postedDate);
+  dueDate.setDate(dueDate.getDate() + paymentTerms);
+  
+  const year = dueDate.getFullYear();
+  const month = String(dueDate.getMonth() + 1).padStart(2, '0');
+  const day = String(dueDate.getDate()).padStart(2, '0');
+
+  const formattedDueDate = `${year}-${month}-${day}`;
+
+  return formattedDueDate;
+}
+
+export function createNewInvoiceObj(data, editID, paymentTerms) {
   const formattedData = {
-    id: data.id,
+    id: editID ?? generateRandomId(),
     createdAt: data.createdAt ?? generateDate(new Date()),
-    paymentDue: data.paymentDue,
+    paymentDue: getDueDate(data.createdAt, paymentTerms),
     description: data.description,
     paymentTerms: data.paymentTerms,
     clientName: data.clientName,
@@ -93,12 +109,6 @@ export function createNewInvoiceObj(data) {
     })),
   };
   return formattedData;
-}
-
-export function successfulRequest(bool) {
-  useEffect(() => {
-    console.log('Hello');
-  }, [bool]);
 }
 
 export function useLiveBrowserWidth() {

@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   createNewInvoiceObj,
   generateDate,
-  generateFutureDate,
-  generateRandomId,
 } from './Utility';
 import { createInvoice, editInvoice } from '../../api';
 export default function InvoiceForm(props) {
@@ -48,15 +46,6 @@ export default function InvoiceForm(props) {
   const onSubmit = async (data, mode) => {
     console.log(data);
     const submittedData = data;
-    if (!submittedData.id) {
-      submittedData.id = generateRandomId();
-    }
-    if (!submittedData.paymentDue) {
-      submittedData.paymentDue = generateFutureDate(
-        submittedData.createdAt,
-        submittedData.paymentTerms
-      );
-    }
 
     if (mode === 'draft') {
       if (submittedData.createdAt) {
@@ -72,7 +61,7 @@ export default function InvoiceForm(props) {
     }
 
     if (props.toggleEditForm) {
-      const updatedInvoice = createNewInvoiceObj(submittedData);
+      const updatedInvoice = createNewInvoiceObj(submittedData, props.currentInvoice.id, props.currentInvoice.paymentTerms);
       await editInvoice(props.currentInvoice._id, updatedInvoice);
       navigate(`/view/${props.currentInvoice._id}`);
       props.toggleEditForm();
