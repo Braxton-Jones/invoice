@@ -1,16 +1,18 @@
 import arrow from '../../assets/icon-arrow-left.svg';
 import ModalPortal, { useLiveBrowserWidth } from '../components/Utility';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getOneInvoice, deleteInvoice, editInvoice } from '../../api';
 import '../../sass/views_styling/_invoiceDetailed.scss';
 import InvoiceForm from '../components/InvoiceForm';
+import {gsap} from 'gsap';
 
 export function loader({ params }) {
   return getOneInvoice(params.id);
 }
 
 function InvoiceDetailedView() {
+  const editModalRef = useRef(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const invoiceData = useLoaderData();
@@ -36,6 +38,25 @@ function InvoiceDetailedView() {
     await editInvoice(id, update);
     navigate(`/view/${invoiceData._id}`);
   }
+
+  useEffect(() => {
+    if(showEditModal === true) {
+      gsap.to(editModalRef.current, {
+        duration: 0.5,
+        opacity: 1,
+        ease: 'power4.out',
+        x: 0
+      })
+    }else{
+      gsap.to(editModalRef.current, {
+        duration: 0.5,
+        x: -100,
+        opacity: 0,
+        ease: 'power4.out',
+        
+      })
+    }
+  },[showEditModal])
 
   const smallStatus = (
     <>
@@ -254,14 +275,12 @@ function InvoiceDetailedView() {
         )}
       </section>
 
-      {showEditModal && (
-        <div className='edit-modal'>
+      <div className='edit-modal' ref={editModalRef}>
           <InvoiceForm
             currentInvoice={invoiceData}
             toggleEditForm={toggleEditModal}
           />
         </div>
-      )}
 
       {showDeleteModal && (
         <ModalPortal onClose={handleCloseDeleteModal}>
@@ -291,15 +310,28 @@ function InvoiceDetailedView() {
 
       <footer>
         <div className='button-wrapper'>
-          <button className='variant-1' onClick={toggleEditModal}>
+          <button 
+          className='variant-1' 
+          onClick={toggleEditModal}
+          disabled={toggleEditModal}
+
+          >
             Edit
           </button>
-          <button className='variant-2' onClick={toggleDeleteModal}>
+          <button 
+          className='variant-2' 
+          onClick={toggleDeleteModal}
+          disabled={toggleEditModal}
+
+          >
             Delete
           </button>
           <button
             className='variant-3'
             onClick={() => handleMarkAsPaid(invoiceData._id, updateStatus)}
+            disabled={toggleEditModal}
+
+
           >
             Mark as Paid
           </button>

@@ -1,15 +1,4 @@
 @import '../util';
-// Styling for the invoice details
-@keyframes slideIn {
-  0% {
-    transform: translateX(-150%);
-    box-shadow: -90px 10px 10px rgba(224, 0, 253, 0.1);
-  }
-  100% {
-    transform: translateX(-2%);
-    box-shadow: -1px 0px 960px rgba(0, 0, 0, 0.8);
-  }
-}
 
 .view-container {
   max-width: pxToRem(690px);
@@ -123,7 +112,6 @@
   top: pxToRem(70px);
   background-color: white;
   width: 100%;
-  animation: slideIn 1s ease forwards;
   padding-left: pxToRem(20px);
 
   h3 {

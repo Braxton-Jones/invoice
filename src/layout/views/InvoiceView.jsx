@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect, useRef } from 'react';
 import { fetchInvoices } from '../../api';
 import add from '../../assets/icon-plus.svg';
 import down from '../../assets/icon-arrow-down.svg';
@@ -8,6 +8,7 @@ import FilterSelect from '../components/FilterSelect';
 import { useLoaderData, defer, Await } from 'react-router-dom';
 import { useLiveBrowserWidth } from '../components/Utility';
 import InvoiceForm from '../components/InvoiceForm';
+import { gsap } from 'gsap';
 
 export function loader() {
   const invoicePromise = fetchInvoices();
@@ -15,6 +16,7 @@ export function loader() {
 }
 
 export default function InvoiceView() {
+  const addModalRef = useRef(null);
   const invoicesData = useLoaderData();
   const [filterStatus, setFilterStatus] = useState('all');
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -54,6 +56,25 @@ export default function InvoiceView() {
     invoiceCount !== 1 ? 's' : ''
   }`;
 
+  useEffect(() => {
+    if(showAddForm === true) {
+      gsap.to(addModalRef.current, {
+        duration: 0.5,
+        opacity: 1,
+        ease: 'power4.out',
+        x: 0
+      })
+    }else{
+      gsap.to(addModalRef.current, {
+        duration: 0.5,
+        x: -100,
+        opacity: 0,
+        ease: 'power4.out',
+        
+      })
+    }
+  },[showAddForm])
+
   return (
     <section className={`home-page`}>
       <section className='subheading'>
@@ -74,11 +95,9 @@ export default function InvoiceView() {
                 toggleFilterModal={toggleFilterModal}
               />
             )}
-            {showAddForm && (
-              <div className='add-modal'>
+           <div className='add-modal' ref={addModalRef}>
                 <InvoiceForm toggleAddForm={toggleAddForm} />
               </div>
-            )}
           </div>
 
           <button className='add-btn' onClick={toggleAddForm}>
