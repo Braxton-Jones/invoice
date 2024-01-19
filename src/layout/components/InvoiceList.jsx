@@ -1,6 +1,6 @@
 import React from 'react';
 import illustration from '../../assets/illustration-empty.svg';
-import Invoice from '../componets/Invoice';
+import Invoice from '../components/Invoice';
 
 export default function InvoiceList(props) {
   const filteredInvoices = props.invoices?.data.filter(

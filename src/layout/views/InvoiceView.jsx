@@ -3,11 +3,11 @@ import { fetchInvoices } from '../../api';
 import add from '../../assets/icon-plus.svg';
 import down from '../../assets/icon-arrow-down.svg';
 import '../../sass/views_styling/_invoiceView.scss';
-import InvoiceList from '../componets/InvoiceList';
-import FilterSelect from '../componets/FilterSelect';
+import InvoiceList from '../components/InvoiceList';
+import FilterSelect from '../components/FilterSelect';
 import { useLoaderData, defer, Await } from 'react-router-dom';
-import { useLiveBrowserWidth } from '../componets/Utility';
-import InvoiceForm from '../componets/InvoiceForm';
+import { useLiveBrowserWidth } from '../components/Utility';
+import InvoiceForm from '../components/InvoiceForm';
 
 export function loader() {
   const invoicePromise = fetchInvoices();
@@ -71,6 +71,7 @@ export default function InvoiceView() {
               <FilterSelect
                 setFilterStatus={setFilterStatus}
                 handleCloseModal={handleCloseFilterModal}
+                toggleFilterModal={toggleFilterModal}
               />
             )}
             {showAddForm && (

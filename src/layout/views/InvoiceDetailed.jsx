@@ -1,10 +1,10 @@
 import arrow from '../../assets/icon-arrow-left.svg';
-import ModalPortal, { useLiveBrowserWidth } from '../componets/Utility';
+import ModalPortal, { useLiveBrowserWidth } from '../components/Utility';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { getOneInvoice, deleteInvoice, editInvoice } from '../../api';
 import '../../sass/views_styling/_invoiceDetailed.scss';
-import InvoiceForm from '../componets/InvoiceForm';
+import InvoiceForm from '../components/InvoiceForm';
 
 export function loader({ params }) {
   return getOneInvoice(params.id);

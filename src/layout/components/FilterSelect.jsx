@@ -26,9 +26,13 @@ export default function FilterSelect(props) {
           type='checkbox'
           id='draft'
           name='checkboxGroup'
-          onChange={() => toggleCheckboxes('draft')}
-        />{' '}
-        <span className='custom-checkbox-label'>Draft</span>
+          onChange={() => {
+            toggleCheckboxes('draft')
+            props.toggleFilterModal()
+          }
+          }
+        />
+        <span className='custom-checkbox-label'> Draft</span>
       </label>
       <br />
       <label htmlFor='checkbox2'>
@@ -36,7 +40,10 @@ export default function FilterSelect(props) {
           type='checkbox'
           id='pending'
           name='checkboxGroup'
-          onChange={() => toggleCheckboxes('pending')}
+          onChange={() => {
+            toggleCheckboxes('pending')
+            props.toggleFilterModal()
+          }}
         />{' '}
         <span className='custom-checkbox-label'>Pending</span>
       </label>
@@ -46,7 +53,10 @@ export default function FilterSelect(props) {
           type='checkbox'
           id='paid'
           name='checkboxGroup'
-          onChange={() => toggleCheckboxes('paid')}
+          onChange={() => {
+            toggleCheckboxes('paid')
+            props.toggleFilterModal()
+          }}
         />{' '}
         <span className='custom-checkbox-label'>Paid</span>
       </label>

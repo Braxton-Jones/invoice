@@ -6,7 +6,7 @@ import profile from '../../assets/image-avatar.jpg';
 import '../../sass/views_styling/_appLayout.scss';
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import { useLiveBrowserWidth } from '../componets/Utility';
+import { useLiveBrowserWidth } from '../components/Utility';
 function AppLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const browserWidth = useLiveBrowserWidth();

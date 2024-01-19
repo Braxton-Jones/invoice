@@ -159,6 +159,7 @@ main {
   border: none;
   letter-spacing: pxToRem(-0.25px);
   padding: pxToRem(20px);
+  z-index: 1;
 }
 
 @media (min-width: 768px) {

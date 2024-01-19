@@ -1,4 +1,4 @@
-import '../../sass/componets_stying/_invoiceForm.scss';
+
 import trash from '../../assets/icon-delete.svg';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';

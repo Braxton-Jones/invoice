@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useLiveBrowserWidth } from './Utility';
 import arrow from '../../assets/icon-arrow-right.svg';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 function Invoice(props) {
+  const invoiceRef = useRef(null)
+  useEffect(()=>{
+    const tl = gsap.timeline()
+    tl.to(invoiceRef.current, {opacity:0.5})
+    tl.to(invoiceRef.current, {opacity: 1})
+  },[])
   const getStatusTextAndStyle = () => {
     switch (props.invoice.status) {
       case 'draft':
@@ -17,6 +25,7 @@ function Invoice(props) {
   };
 
   const { text, invoiceClass } = getStatusTextAndStyle();
+
   const smallInvoice = (
     <>
       <Link to={`/view/${props.invoice._id}`}>
@@ -92,7 +101,7 @@ function Invoice(props) {
   );
   const browserWidth = useLiveBrowserWidth();
   return (
-    <div className='invoice'>
+    <div className='invoice' ref={invoiceRef}>
       {browserWidth < 768 ? smallInvoice : largeInvoice}
     </div>
   );
