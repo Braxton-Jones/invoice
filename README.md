@@ -1,8 +1,8 @@
-# Invoice Management Web Application
+# Envoice
 
 ## Overview
 
-The Invoice Management Web Application offers a user-friendly solution for efficiently managing invoices for your business. It simplifies the process of creating, viewing, updating, and organizing invoices, helping you maintain a clear record of your financial transactions.
+Envoice is a full stack Invoice app made using MERN Stack. This was my first time doing anything full stack so that was my motivation. I learned how to pass data to and from a database which i thought was more complicated than it was. If i had more time with this project, I would have implemented jobs from an API instead of making fake ones, and perhaps added a way to track your applications
 
 ### Key Features
 
